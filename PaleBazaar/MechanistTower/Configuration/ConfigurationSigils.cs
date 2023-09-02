@@ -4,6 +4,8 @@ namespace PaleBazaar.MechanistTower.Configuration
 {
     public class ConfigurationSigils : IConfigurationSigils
     {
+        public string AdminEmail { get; set; }
+
         public string AdminUserName { get; set; }
 
         public string AdminPassword { get; set; }
