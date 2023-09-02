@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-PaleBazaar-e8b7be52-0df2-489d-abb2-a31717d2ba09</UserSecretsId>
   </PropertyGroup>
