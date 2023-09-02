@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PaleBazaar.Areas.Identity;
 using PaleBazaar.Data;
 using PaleBazaar.GuardianAegis;
-using PaleBazaar.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
