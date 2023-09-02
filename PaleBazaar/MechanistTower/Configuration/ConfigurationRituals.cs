@@ -1,7 +1,9 @@
 ﻿using Azure.Identity;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Azure;
 using PaleBazaar.Areas.Identity;
 using PaleBazaar.Data;
 using PaleBazaar.GuardianAegis;
@@ -49,6 +51,18 @@ namespace PaleBazaar.MechanistTower.Configuration
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            var cosmosEndpoint = configurationSigils.CosmosEndpoint;
+            var cosmosKey = configurationSigils.CosmosKey;
+            var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
+
+            //builder.Services.AddSingleton<ICosmosTomeScryer>(
+            //    new CosmosTomeScryer(cosmosClient));
+
+            builder.Services.AddAzureClients(builder =>
+            {
+                builder.AddBlobServiceClient(configurationSigils.BlobConnectionString);
+            });
 
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
             builder.Services.AddServerSideBlazor();
