@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PaleBazaar.Areas.Identity;
 using PaleBazaar.Data;
+using PaleBazaar.GuardianAegis;
+using PaleBazaar.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
@@ -47,6 +50,14 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    DbInitializer.InitializeAsync(userManager, roleManager).Wait();
+}
 
 app.MapControllers();
 app.MapBlazorHub();
