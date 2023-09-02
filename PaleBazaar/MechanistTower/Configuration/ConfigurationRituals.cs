@@ -56,8 +56,8 @@ namespace PaleBazaar.MechanistTower.Configuration
             var cosmosKey = configurationSigils.CosmosKey;
             var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
 
-            //builder.Services.AddSingleton<ICosmosTomeScryer>(
-            //    new CosmosTomeScryer(cosmosClient));
+            builder.Services.AddSingleton<ICosmosTomeScryer>(
+                new CosmosTomeScryer(cosmosClient));
 
             builder.Services.AddAzureClients(builder =>
             {
