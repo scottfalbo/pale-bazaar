@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +27,18 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 
 builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Configuration.AddEnvironmentVariables()
+    .AddCommandLine(args)
+    .AddUserSecrets<Program>();
+
+string keyVaultUri = builder.Configuration["KeyVaultUri"];
+
+var clientId = builder.Configuration["Azure:ClientId"];
+var clientSecret = builder.Configuration["Azure:ClientSecret"];
+var tenantId = builder.Configuration["Azure:TenantId"];
+
+builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUri), new ClientSecretCredential(tenantId, clientId, clientSecret));
 
 var app = builder.Build();
 
