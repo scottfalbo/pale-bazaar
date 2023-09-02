@@ -1,11 +1,11 @@
 using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PaleBazaar.Areas.Identity;
 using PaleBazaar.Data;
 using PaleBazaar.GuardianAegis;
+using PaleBazaar.MechanistTower.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +27,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<IConfigurationSigils, ConfigurationSigils>();
 
 builder.Configuration.AddEnvironmentVariables()
     .AddCommandLine(args)
