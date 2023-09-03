@@ -1,0 +1,37 @@
+html, body, .page-container, .page {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(23, 23, 23);
+  color: rgb(182, 236, 255);
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+header {
+  background-color: rgb(0, 0, 0);
+}
+
+footer {
+  background-color: rgb(0, 0, 0);
+  flex-shrink: 0;
+}
+
+.navbar-toggler-icon {
+  background-color: rgb(174, 229, 255);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

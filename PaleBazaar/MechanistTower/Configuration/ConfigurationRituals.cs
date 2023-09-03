@@ -110,8 +110,7 @@ namespace PaleBazaar.MechanistTower.Configuration
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                DbInitializer.InitializeAsync(userManager, roleManager, configurationSigils
-                    ).Wait();
+                DbInitializer.InitializeAsync(userManager, roleManager, configurationSigils).Wait();
             }
 
             app.MapControllers();
