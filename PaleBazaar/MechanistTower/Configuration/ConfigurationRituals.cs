@@ -78,8 +78,6 @@ namespace PaleBazaar.MechanistTower.Configuration
             builder.Services.AddScoped<IIllustrationsTome, IllustrationsTome>();
             builder.Services.AddScoped<IEchoKeeperChanter, EchoKeeperChanter>();
             builder.Services.AddScoped<IEchoShaper, EchoShaper>();
-
-            builder.Services.AddSingleton<WeatherForecastService>();
         }
 
         public static void ImbueConstruct(
