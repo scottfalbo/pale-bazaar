@@ -72,7 +72,9 @@ namespace PaleBazaar.MechanistTower.Configuration
             builder.Services.AddSingleton<WeatherForecastService>();
         }
 
-        public static void ImbueConstruct(WebApplication app)
+        public static void ImbueConstruct(
+            WebApplication app,
+            IConfigurationSigils configurationSigils)
         {
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -100,7 +102,8 @@ namespace PaleBazaar.MechanistTower.Configuration
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                DbInitializer.InitializeAsync(userManager, roleManager).Wait();
+                DbInitializer.InitializeAsync(userManager, roleManager, configurationSigils
+                    ).Wait();
             }
 
             app.MapControllers();
