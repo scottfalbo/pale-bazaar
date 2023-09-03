@@ -15,7 +15,6 @@ else
         <img src="@echo.value.ThumbnailUrl" alt="@echo.value.AltText" @onclick="() => ShowImage(echo.index)" />
     }
 
-    <!-- Carousel -->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             @foreach (var echo in Echoes.Select((value, index) => new { value, index }))
