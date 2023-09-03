@@ -72,12 +72,12 @@ namespace PaleBazaar.MechanistTower.Configuration
 
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 
-            builder.Services.AddTransient<IFleshRiteChanters, FleshRiteChanters>();
-            builder.Services.AddTransient<IFleshRitesTome, FleshRitesTome>();
-            builder.Services.AddTransient<IIllustrationChanters, IllustrationChanters>();
-            builder.Services.AddTransient<IIllustrationsTome, IllustrationsTome>();
-            builder.Services.AddTransient<IEchoKeeperChanter, EchoKeeperChanter>();
-            builder.Services.AddTransient<IEchoShaper, EchoShaper>();
+            builder.Services.AddScoped<IFleshRiteChanters, FleshRiteChanters>();
+            builder.Services.AddScoped<IFleshRitesTome, FleshRitesTome>();
+            builder.Services.AddScoped<IIllustrationChanters, IllustrationChanters>();
+            builder.Services.AddScoped<IIllustrationsTome, IllustrationsTome>();
+            builder.Services.AddScoped<IEchoKeeperChanter, EchoKeeperChanter>();
+            builder.Services.AddScoped<IEchoShaper, EchoShaper>();
 
             builder.Services.AddSingleton<WeatherForecastService>();
         }
