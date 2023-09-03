@@ -1,20 +1,24 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>PaleBazaar</PageTitle>
-
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <NavMenu />
+            </div>
+        </nav>
 
-    <main>
-        <div class="top-row px-4 auth">
-            <LoginDisplay />
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <div class="content px-4">
+            @Body
         </div>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container">
+                <LoginDisplay />
+            </div>
+        </footer>
+    </div>
 </div>
