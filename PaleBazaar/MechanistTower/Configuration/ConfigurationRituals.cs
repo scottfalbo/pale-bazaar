@@ -7,6 +7,9 @@ using Microsoft.Extensions.Azure;
 using PaleBazaar.Areas.Identity;
 using PaleBazaar.Data;
 using PaleBazaar.GuardianAegis;
+using PaleBazaar.MechanistTower.Manipulators;
+using PaleBazaar.MechanistTower.SpellChanters;
+using PaleBazaar.MechanistTower.Tomes;
 
 namespace PaleBazaar.MechanistTower.Configuration
 {
@@ -68,6 +71,13 @@ namespace PaleBazaar.MechanistTower.Configuration
             builder.Services.AddServerSideBlazor();
 
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+
+            builder.Services.AddTransient<IFleshRiteChanters, FleshRiteChanters>();
+            builder.Services.AddTransient<IFleshRitesTome, FleshRitesTome>();
+            builder.Services.AddTransient<IIllustrationChanters, IllustrationChanters>();
+            builder.Services.AddTransient<IIllustrationsTome, IllustrationsTome>();
+            builder.Services.AddTransient<IEchoKeeperChanter, EchoKeeperChanter>();
+            builder.Services.AddTransient<IEchoShaper, EchoShaper>();
 
             builder.Services.AddSingleton<WeatherForecastService>();
         }
