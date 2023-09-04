@@ -1,0 +1,84 @@
+/* Gallery stuff */
+
+.echo-viewer-data-gallery {
+    background-color: #000;
+  }
+  
+  .gallery-chamber-title h1 {
+    font-size: 2em;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .input-field {
+    text-align: center;
+    font-size: 1.8em;
+  }
+  
+  .circular-control {
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    border: 1px solid #86fffb;
+  }
+  
+  .circular-control::before {
+    font-size: 24px;
+    color: #86fffb;
+  }
+  
+  /* Admin toggles */
+  
+  .dot {
+    background-color: rgb(185, 254, 255);
+    border-radius: 50%;
+  }
+  
+  .menu-button {
+    background-color: #000;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+  }
+  
+  .x-part {
+    background-color: #f6b265;
+  }
+  
+  .dropdown-container {
+    text-align: center;
+  }
+  
+  .dropbtn {
+    background-color: #000;
+    color: rgb(185, 254, 255);
+    padding: 16px;
+    font-size: 16px;
+    border: solid 1px rgb(185, 254, 255);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    background-color: #000;
+    margin: 5px;
+    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  .modal-content {
+    background-color: #000;
+    border: 2px solid #b5ffea;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.3em;;
+  }
+  
+  .modal-footer button {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #b5ffea;
+    background-color: #000000;
+    color: #fff29e;
+    font-size: 1.1em;
+    width: 120px;
+  }
