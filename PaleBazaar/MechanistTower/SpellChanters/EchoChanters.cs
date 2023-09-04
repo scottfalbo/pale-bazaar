@@ -4,37 +4,37 @@ using PaleBazaar.MechanistTower.Tomes;
 
 namespace PaleBazaar.MechanistTower.SpellChanters
 {
-    public class IllustrationChanters : IIllustrationChanters
+    public class EchoChanters : IEchoChanters
     {
         private readonly IEchoesTome _echoesTome;
         private readonly IEchoKeeperChanter _echoKeeperChanter;
 
-        public IllustrationChanters(IEchoesTome echoesTome, IEchoKeeperChanter echoKeeperChanter)
+        public EchoChanters(IEchoesTome echoesTome, IEchoKeeperChanter echoKeeperChanter)
         {
             _echoesTome = echoesTome;
             _echoKeeperChanter = echoKeeperChanter;
         }
 
-        public async Task<List<Echo>> GetIllustrations()
+        public async Task<List<Echo>> GetEchoes()
         {
-            var illustrations = await _echoesTome.GetEchoesAsync(OculusEchoCyphers.Illustration);
+            var echoes = await _echoesTome.GetEchoesAsync(OculusEchoCyphers.FleshRite);
 
-            return illustrations.ToList();
+            return echoes.ToList();
         }
 
         public async Task ImbueEcho(IFormFile[] files, string name, string altText)
         {
             foreach (var file in files)
             {
-                var illustration = new Echo(OculusEchoCyphers.Illustration)
+                var fleshRite = new Echo(OculusEchoCyphers.FleshRite)
                 {
                     Name = name,
                     AltText = altText,
                 };
 
-                await _echoKeeperChanter.InscribeEcho(file, illustration);
+                await _echoKeeperChanter.InscribeEcho(file, fleshRite);
 
-                await _echoesTome.ImbueEchoAsync(illustration);
+                await _echoesTome.ImbueEchoAsync(fleshRite);
             }
         }
 

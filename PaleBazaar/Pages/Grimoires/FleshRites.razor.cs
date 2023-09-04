@@ -9,7 +9,7 @@ namespace PaleBazaar.Pages.Grimoires
     public partial class FleshRites
     {
         [Inject]
-        private IFleshRiteChanters _fleshRiteChanters { get; set; }
+        private IEchoChanters _echoChanters { get; set; }
 
         [Inject]
         private AuthenticationStateProvider _authenticationStateProvider { get; set; }
@@ -23,7 +23,7 @@ namespace PaleBazaar.Pages.Grimoires
 
         protected override async Task OnInitializedAsync()
         {
-            Echoes = await _fleshRiteChanters.GetFleshRites();
+            Echoes = await _echoChanters.GetEchoes();
 
             var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
             var user = authState.User;

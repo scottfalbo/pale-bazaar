@@ -2,9 +2,9 @@
 
 namespace PaleBazaar.MechanistTower.SpellChanters
 {
-    public interface IFleshRiteChanters
+    public interface IEchoChanters
     {
-        Task<List<Echo>> GetFleshRites();
+        Task<List<Echo>> GetEchoes();
 
         Task ImbueEcho(IFormFile[] files, string name, string altText);
 
