@@ -15,9 +15,9 @@ namespace PaleBazaar.MechanistTower.SpellChanters
             _echoKeeperChanter = echoKeeperChanter;
         }
 
-        public async Task<List<Echo>> GetEchoes()
+        public async Task<List<Echo>> GetEchoes(string eternalSymbol)
         {
-            var echoes = await _echoesTome.GetEchoesAsync(OculusEchoCyphers.FleshRite);
+            var echoes = await _echoesTome.GetEchoesAsync(eternalSymbol);
 
             return echoes.ToList();
         }

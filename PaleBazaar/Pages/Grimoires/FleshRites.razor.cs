@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using PaleBazaar.MechanistTower.Entities;
+using PaleBazaar.MechanistTower.Entities.EternalSymbols;
 using PaleBazaar.MechanistTower.SpellChanters;
 
 namespace PaleBazaar.Pages.Grimoires
@@ -23,7 +24,7 @@ namespace PaleBazaar.Pages.Grimoires
 
         protected override async Task OnInitializedAsync()
         {
-            Echoes = await _echoChanters.GetEchoes();
+            Echoes = await _echoChanters.GetEchoes(OculusEchoCyphers.FleshRite);
 
             var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
             var user = authState.User;
