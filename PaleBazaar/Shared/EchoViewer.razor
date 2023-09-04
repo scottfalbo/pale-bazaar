@@ -2,26 +2,25 @@
 
 @code {
     [Parameter] public List<Echo> Echoes { get; set; }
-    [Parameter] public List<Echo> OculusEchoes { get; set; }
     [Parameter] public int ActiveImageIndex { get; set; }
-    [Parameter] public EventCallback<int> OnImageClick { get; set; }
+    [Parameter] public EventCallback<int> OnEchoEvocation { get; set; }
 }
 
-<section id="viewer">
-    @if (OculusEchoes == null)
+<div>
+    @if (Echoes == null)
     {
         <p>Loading...</p>
     }
     else
     {
-        @foreach (var echo in OculusEchoes.Select((value, index) => new { value, index }))
+        @foreach (var echo in Echoes.Select((value, index) => new { value, index }))
         {
-            <img src="@echo.value.ThumbnailUrl" alt="@echo.value.AltText" @onclick="() => OnImageClick.InvokeAsync(echo.index)" />
+            <img src="@echo.value.ThumbnailUrl" alt="@echo.value.AltText" @onclick="() => OnEchoEvocation.InvokeAsync(echo.index)" />
         }
 
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                @foreach (var echo in OculusEchoes.Select((value, index) => new { value, index }))
+                @foreach (var echo in Echoes.Select((value, index) => new { value, index }))
                 {
                     <div class="carousel-item @(ActiveImageIndex == echo.index ? "active" : "")">
                         <img class="d-block w-100" src="@echo.value.ImageUrl" alt="@echo.value.AltText">
@@ -38,4 +37,4 @@
             </a>
         </div>
     }
-</section>
+</div>
