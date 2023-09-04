@@ -8,12 +8,13 @@
     [Parameter] public int ActiveEchoIndex { get; set; }
     [Parameter] public EventCallback<int> OnEchoEvocation { get; set; }
     [Parameter] public bool IsWizardOverLord { get; set; }
+
     private Echo EchoToShatter;
     private bool IsCarouselVisible = false;
 
     private string GetCarouselClasses()
     {
-        return IsCarouselVisible ? "full-screen" : "hide-me full-screen";
+        return IsCarouselVisible ? "" : "hide-me";
     }
 
     private void ShowCarousel(int index)
@@ -91,7 +92,7 @@
             }
         </div>
 
-        <div id="echo-viewer-control" class="carousel slide echo-viewer-data-gallery @GetCarouselClasses()" data-ride="carousel">
+        <div id="echo-viewer-control" class="carousel full-screen slide echo-viewer-data-gallery @GetCarouselClasses()" data-ride="carousel">
             <div class="carousel-inner">
                 @foreach (var echo in Echoes.Select((value, index) => new { value, index }))
                 {
