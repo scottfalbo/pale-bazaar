@@ -13,8 +13,8 @@
         </p>
     </div>
 
-    <section id="viewer">
-        <EchoViewer Echoes="@Echoes" ActiveImageIndex="@ActiveImageIndex" OnEchoEvocation="@ShowImage" />
+    <section>
+        <EchoViewer Echoes="@Echoes" ActiveEchoIndex="@ActiveImageIndex" OnEchoEvocation="@ShowImage" IsWizardOverLord="@IsWizardOverlord" />
     </section>
 
     @if (IsWizardOverlord)

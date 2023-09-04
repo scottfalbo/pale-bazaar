@@ -2,8 +2,33 @@
 
 <PageTitle>Illustrations</PageTitle>
 
-<h3>Illustrations</h3>
+<section id="illustrations">
+    <div class="gallery-chamber-title">
+        <h1 class="gallery-chamber-title">Illustrations</h1>
+    </div>
 
-@code {
+    <div class="gallery-chamber-synopsis">
+        <p class="paragraph-format">
+            Mystica arcanae vocibus resonant, inter sidera lunaque pervagantur. Obscuritas noctis revelat arcanum, secretum veritatis occultum. In silvis umbrosis, oraculum susurrat, mysterium naturae evocans.
+        </p>
+    </div>
 
-}
+    <section>
+        <EchoViewer Echoes="@Echoes" ActiveEchoIndex="@ActiveImageIndex" OnEchoEvocation="@ShowImage" IsWizardOverLord="@IsWizardOverlord" />
+    </section>
+
+    @if (IsWizardOverlord)
+    {
+        <p>admin menu</p>
+    }
+
+    <div class="gallery-chamber-synopsis">
+        <p class="paragraph-format">
+            Mystica arcanae vocibus resonant, inter sidera lunaque pervagantur. Obscuritas noctis revelat arcanum, secretum veritatis occultum. In silvis umbrosis, oraculum susurrat, mysterium naturae evocans.
+            <br />
+            Libri antiqui, pleni incantationum et conjurationum, in bibliotheca vetusta reperiuntur. Magi et sapientes, stellis ducuntur, fata hominum scribunt. Speculum magicae, imagines obscuras ostendit, futurum nebulosum.
+            <br />
+            Spiritus et spectra, per noctem vagantur, humanos terrent. Potestates tenebrosae, magicae vires occultant, mundum subterfugium regunt. Alchimia et hermetica, scientia et ars conjuncta, via ad illuminationem.
+        </p>
+    </div>
+</section>
