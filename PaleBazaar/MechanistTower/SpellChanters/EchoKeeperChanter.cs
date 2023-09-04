@@ -33,7 +33,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
                 cancellationToken: default);
         }
 
-        public async Task InscribeEcho(IFormFile file, OculusEcho oculusEcho)
+        public async Task InscribeEcho(IFormFile file, Echo oculusEcho)
         {
             var echoFileName = _echoShaper.AugmentRunicNaming(file.FileName);
             var reshapedEcho = _echoShaper.ShapeEcho(file, 1920);

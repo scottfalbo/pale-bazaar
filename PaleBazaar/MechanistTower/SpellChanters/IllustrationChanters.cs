@@ -1,22 +1,23 @@
 ﻿using PaleBazaar.MechanistTower.Entities;
+using PaleBazaar.MechanistTower.Entities.EternalSymbols;
 using PaleBazaar.MechanistTower.Tomes;
 
 namespace PaleBazaar.MechanistTower.SpellChanters
 {
     public class IllustrationChanters : IIllustrationChanters
     {
-        private readonly IIllustrationsTome _illustrationsTome;
+        private readonly IEchoesTome _echoesTome;
         private readonly IEchoKeeperChanter _echoKeeperChanter;
 
-        public IllustrationChanters(IIllustrationsTome illustrationsTome, IEchoKeeperChanter echoKeeperChanter)
+        public IllustrationChanters(IEchoesTome echoesTome, IEchoKeeperChanter echoKeeperChanter)
         {
-            _illustrationsTome = illustrationsTome;
+            _echoesTome = echoesTome;
             _echoKeeperChanter = echoKeeperChanter;
         }
 
-        public async Task<List<Illustration>> GetIllustrations()
+        public async Task<List<Echo>> GetIllustrations()
         {
-            var illustrations = await _illustrationsTome.GetIllustrationsAsync();
+            var illustrations = await _echoesTome.GetEchoesAsync(OculusEchoCyphers.Illustration);
 
             return illustrations.ToList();
         }
@@ -25,7 +26,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
         {
             foreach (var file in files)
             {
-                var illustration = new Illustration()
+                var illustration = new Echo(OculusEchoCyphers.Illustration)
                 {
                     Name = name,
                     AltText = altText,
@@ -33,7 +34,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
 
                 await _echoKeeperChanter.InscribeEcho(file, illustration);
 
-                await _illustrationsTome.ImbueIllustrationAsync(illustration);
+                await _echoesTome.ImbueEchoAsync(illustration);
             }
         }
 
@@ -42,7 +43,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
             await _echoKeeperChanter.BanishEcho(fileName);
             await _echoKeeperChanter.BanishEcho(thumbnailFileName);
 
-            await _illustrationsTome.ShatterIllustrationAsync(id, partitionKey);
+            await _echoesTome.ShatterEchoAsync(id, partitionKey);
         }
     }
 }

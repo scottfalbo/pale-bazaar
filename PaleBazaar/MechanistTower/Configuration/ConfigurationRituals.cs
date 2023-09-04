@@ -73,9 +73,8 @@ namespace PaleBazaar.MechanistTower.Configuration
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 
             builder.Services.AddScoped<IFleshRiteChanters, FleshRiteChanters>();
-            builder.Services.AddScoped<IFleshRitesTome, FleshRitesTome>();
+            builder.Services.AddScoped<IEchoesTome, EchoesTome>();
             builder.Services.AddScoped<IIllustrationChanters, IllustrationChanters>();
-            builder.Services.AddScoped<IIllustrationsTome, IllustrationsTome>();
             builder.Services.AddScoped<IEchoKeeperChanter, EchoKeeperChanter>();
             builder.Services.AddScoped<IEchoShaper, EchoShaper>();
         }

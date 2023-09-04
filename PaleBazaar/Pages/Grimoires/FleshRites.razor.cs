@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Azure.Cosmos;
 using PaleBazaar.MechanistTower.Entities;
 using PaleBazaar.MechanistTower.SpellChanters;
 
@@ -18,7 +17,7 @@ namespace PaleBazaar.Pages.Grimoires
         [Inject]
         private UserManager<IdentityUser> _userManager { get; set; }
 
-        private List<FleshRite> Echoes { get; set; }
+        private List<Echo> Echoes { get; set; }
         private int ActiveImageIndex { get; set; } = 0;
         private bool IsWizardOverlord { get; set; }
 
@@ -36,7 +35,7 @@ namespace PaleBazaar.Pages.Grimoires
             }
         }
 
-        void ShowImage(int index)
+        private void ShowImage(int index)
         {
             ActiveImageIndex = index;
         }

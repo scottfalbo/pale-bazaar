@@ -1,22 +1,23 @@
 ﻿using PaleBazaar.MechanistTower.Entities;
+using PaleBazaar.MechanistTower.Entities.EternalSymbols;
 using PaleBazaar.MechanistTower.Tomes;
 
 namespace PaleBazaar.MechanistTower.SpellChanters
 {
     public class FleshRiteChanters : IFleshRiteChanters
     {
-        private readonly IFleshRitesTome _fleshRitesTome;
+        private readonly IEchoesTome _echoesTome;
         private readonly IEchoKeeperChanter _echoKeeperChanter;
 
-        public FleshRiteChanters(IFleshRitesTome fleshRitesTome, IEchoKeeperChanter echoKeeperChanter)
+        public FleshRiteChanters(IEchoesTome echoesTome, IEchoKeeperChanter echoKeeperChanter)
         {
-            _fleshRitesTome = fleshRitesTome;
+            _echoesTome = echoesTome;
             _echoKeeperChanter = echoKeeperChanter;
         }
 
-        public async Task<List<FleshRite>> GetFleshRites()
+        public async Task<List<Echo>> GetFleshRites()
         {
-            var fleshRites = await _fleshRitesTome.GetFleshRitesAsync();
+            var fleshRites = await _echoesTome.GetEchoesAsync(OculusEchoCyphers.FleshRite);
 
             return fleshRites.ToList();
         }
@@ -25,7 +26,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
         {
             foreach (var file in files)
             {
-                var fleshRite = new FleshRite()
+                var fleshRite = new Echo(OculusEchoCyphers.FleshRite)
                 {
                     Name = name,
                     AltText = altText,
@@ -33,7 +34,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
 
                 await _echoKeeperChanter.InscribeEcho(file, fleshRite);
 
-                await _fleshRitesTome.ImbueFleshRiteAsync(fleshRite);
+                await _echoesTome.ImbueEchoAsync(fleshRite);
             }
         }
 
@@ -42,7 +43,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
             await _echoKeeperChanter.BanishEcho(fileName);
             await _echoKeeperChanter.BanishEcho(thumbnailFileName);
 
-            await _fleshRitesTome.ShatterFleshRiteAsync(id, partitionKey);
+            await _echoesTome.ShatterEchoAsync(id, partitionKey);
         }
     }
 }

@@ -2,39 +2,38 @@
 using Microsoft.Azure.Cosmos.Linq;
 using PaleBazaar.MechanistTower.Configuration;
 using PaleBazaar.MechanistTower.Entities;
-using PaleBazaar.MechanistTower.Entities.EternalSymbols;
 using PaleBazaar.MechanistTower.Transmutators;
 using System.Net;
 
 namespace PaleBazaar.MechanistTower.Tomes
 {
-    public class FleshRitesTome : IFleshRitesTome
+    public class EchoesTome : IEchoesTome
     {
         private readonly Container _container;
 
-        private readonly FleshRiteTransmutator _transmutator;
+        private readonly EchoTransmutator _transmutator;
 
-        public FleshRitesTome(ICosmosTomeScryer cosmosTomeScryer)
+        public EchoesTome(ICosmosTomeScryer cosmosTomeScryer)
         {
             var scryer = cosmosTomeScryer.ConjureScryer();
             _container = scryer.GetContainer("PaleSpecter", "Tomes");
 
-            _transmutator = new FleshRiteTransmutator();
+            _transmutator = new EchoTransmutator();
         }
 
-        public async Task ImbueFleshRiteAsync(FleshRite fleshRite)
+        public async Task ImbueEchoAsync(Echo echo)
         {
-            var infernalContract = _transmutator.FleshRiteToInfernalContract(fleshRite);
+            var infernalContract = _transmutator.EchoToInfernalContract(echo);
 
             await _container.CreateItemAsync(infernalContract, new PartitionKey(infernalContract.PartitionKey));
         }
 
-        public async Task<IEnumerable<FleshRite>> GetFleshRitesAsync()
+        public async Task<IEnumerable<Echo>> GetEchoesAsync(string eternalSymbol)
         {
-            var fleshRites = new List<FleshRite>();
+            var echoes = new List<Echo>();
 
             var query = _container.GetItemLinqQueryable<InfernalContract>()
-                .Where(x => x.EternalSymbol == OculusEchoCyphers.FleshRite)
+                .Where(x => x.EternalSymbol == eternalSymbol)
                 .ToFeedIterator();
 
             while (query.HasMoreResults)
@@ -43,23 +42,23 @@ namespace PaleBazaar.MechanistTower.Tomes
 
                 foreach (var infernalContract in results)
                 {
-                    var fleshRite = _transmutator.InfernalContractToFleshRite(infernalContract);
-                    fleshRites.Add(fleshRite);
+                    var echo = _transmutator.InfernalContractToEcho(infernalContract);
+                    echoes.Add(echo);
                 }
             }
 
-            return fleshRites;
+            return echoes;
         }
 
-        public async Task<FleshRite> GetFleshRiteAsync(string id, string partitionKey)
+        public async Task<Echo> GetEchoAsync(string id, string partitionKey)
         {
             try
             {
                 ItemResponse<InfernalContract> response = await _container.ReadItemAsync<InfernalContract>(id, new PartitionKey(partitionKey));
 
-                var fleshRite = _transmutator.InfernalContractToFleshRite(response.Resource);
+                var echo = _transmutator.InfernalContractToEcho(response.Resource);
 
-                return fleshRite;
+                return echo;
             }
             catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
@@ -67,12 +66,12 @@ namespace PaleBazaar.MechanistTower.Tomes
             }
         }
 
-        public async Task UpdateFleshRiteAsync(FleshRite updatedFleshRite)
+        public async Task UpdateEchoAsync(Echo updatedEcho)
         {
-            var id = updatedFleshRite.Id;
-            var partitionKey = updatedFleshRite.PartitionKey;
+            var id = updatedEcho.Id;
+            var partitionKey = updatedEcho.PartitionKey;
 
-            var infernalContract = _transmutator.FleshRiteToInfernalContract(updatedFleshRite);
+            var infernalContract = _transmutator.EchoToInfernalContract(updatedEcho);
 
             try
             {
@@ -84,7 +83,7 @@ namespace PaleBazaar.MechanistTower.Tomes
             }
         }
 
-        public async Task ShatterFleshRiteAsync(string id, string partitionKey)
+        public async Task ShatterEchoAsync(string id, string partitionKey)
         {
             try
             {

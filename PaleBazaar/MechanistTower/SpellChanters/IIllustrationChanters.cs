@@ -4,7 +4,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
 {
     public interface IIllustrationChanters
     {
-        Task<List<Illustration>> GetIllustrations();
+        Task<List<Echo>> GetIllustrations();
 
         Task ImbueEcho(IFormFile[] files, string name, string altText);
 
