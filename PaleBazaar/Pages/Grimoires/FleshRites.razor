@@ -2,36 +2,65 @@
 
 <PageTitle>Flesh Rites</PageTitle>
 
-<h3>FleshRites</h3>
+<section id="flesh-rites">
+    <div class="gallery-chamber-title">
+        <h1 class="gallery-chamber-title">Flesh Rites</h1>
+    </div>
 
-@if (Echoes == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    @foreach (var echo in Echoes.Select((value, index) => new { value, index }))
-    {
-        <img src="@echo.value.ThumbnailUrl" alt="@echo.value.AltText" @onclick="() => ShowImage(echo.index)" />
-    }
+    <div class="gallery-chamber-synopsis">
+        <p class="paragraph-format">
+            Mystica arcanae vocibus resonant, inter sidera lunaque pervagantur. Obscuritas noctis revelat arcanum, secretum veritatis occultum. In silvis umbrosis, oraculum susurrat, mysterium naturae evocans.
+        </p>
+    </div>
 
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+    <section>
+        @if (Echoes == null)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
             @foreach (var echo in Echoes.Select((value, index) => new { value, index }))
             {
-                <div class="carousel-item @(ActiveImageIndex == echo.index ? "active" : "")">
-                    <img class="d-block w-100" src="@echo.value.ImageUrl" alt="@echo.value.AltText">
-                </div>
+                <img src="@echo.value.ThumbnailUrl" alt="@echo.value.AltText" @onclick="() => ShowImage(echo.index)" />
             }
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach (var echo in Echoes.Select((value, index) => new { value, index }))
+                    {
+                        <div class="carousel-item @(ActiveImageIndex == echo.index ? "active" : "")">
+                            <img class="d-block w-100" src="@echo.value.ImageUrl" alt="@echo.value.AltText">
+                        </div>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        }
+    </section>
+
+    @if (IsWizardOverlord)
+    {
+        <p>admin menu</p>
+    }
+
+    <div class="gallery-chamber-synopsis">
+        <p class="paragraph-format">
+            Mystica arcanae vocibus resonant, inter sidera lunaque pervagantur. Obscuritas noctis revelat arcanum, secretum veritatis occultum. In silvis umbrosis, oraculum susurrat, mysterium naturae evocans.
+            <br />
+            Libri antiqui, pleni incantationum et conjurationum, in bibliotheca vetusta reperiuntur. Magi et sapientes, stellis ducuntur, fata hominum scribunt. Speculum magicae, imagines obscuras ostendit, futurum nebulosum.
+            <br />
+            Spiritus et spectra, per noctem vagantur, humanos terrent. Potestates tenebrosae, magicae vires occultant, mundum subterfugium regunt. Alchimia et hermetica, scientia et ars conjuncta, via ad illuminationem.
+        </p>
     </div>
-}
+</section>
+
+
 
