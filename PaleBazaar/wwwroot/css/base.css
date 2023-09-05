@@ -36,6 +36,14 @@ a {
   color: inherit;
 }
 
+.menu-button:hover {
+    cursor: pointer;
+  }
+  
+.menu-toggle:checked + .dropbtn + .dropdown {
+display: block;
+}
+
 .hide-me {
     display: none;
 }
