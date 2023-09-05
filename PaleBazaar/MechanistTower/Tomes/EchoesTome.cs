@@ -54,7 +54,7 @@ namespace PaleBazaar.MechanistTower.Tomes
         {
             try
             {
-                ItemResponse<InfernalContract> response = await _container.ReadItemAsync<InfernalContract>(id, new PartitionKey(partitionKey));
+                var response = await _container.ReadItemAsync<InfernalContract>(id, new PartitionKey(partitionKey));
 
                 var echo = _transmutator.InfernalContractToEcho(response.Resource);
 
