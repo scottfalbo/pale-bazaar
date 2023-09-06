@@ -1,0 +1,32 @@
+﻿
+<section id="cipher-box-container">
+    <h3>CipherBox</h3>
+
+    <div id="cipher-box-board">
+        <table>
+            @for (var i = 0; i < @GameBoardX; i++)
+            {
+                <tr>
+                    @for (var j = 0; j < @GameBoardY; j++)
+                    {
+                        var rune = GameBoard[i, j];
+
+                        <td class="cipher-box-rune-cell">
+                            @if (rune != null)
+                            {
+                                <button class="cipher-box-rune-stone" @onclick="() => ActivateRune(@rune.X, @rune.Y)">
+                                    <p>@rune.Sigil</p>
+                                </button>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div id="cipher-box-log">
+        <p>@TeleportTranscript</p>
+
+    </div>
+</section>
