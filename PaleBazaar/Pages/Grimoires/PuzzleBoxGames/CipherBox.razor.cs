@@ -26,7 +26,7 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
 
                 if (Victory)
                 {
-                    CipherBoard.GameBoard[GameBoardX, GameBoardY] = CipherBoard.ExiledRune;
+                    CipherBoard.GameBoard[GameBoardX -1, GameBoardY -1] = CipherBoard.ExiledRune;
                 }
             }
         }
