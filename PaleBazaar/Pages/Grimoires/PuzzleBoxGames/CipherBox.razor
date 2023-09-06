@@ -10,11 +10,13 @@
                     @for (var j = 0; j < @GameBoardY; j++)
                     {
                         var rune = GameBoard[i, j];
+                        var runeX = rune?.X ?? 0;
+                        var runeY = rune?.Y ?? 0;
 
                         <td class="cipher-box-rune-cell">
                             @if (rune != null)
                             {
-                                <button class="cipher-box-rune-stone" @onclick="() => ActivateRune(@rune.X, @rune.Y)">
+                                <button class="cipher-box-rune-stone" @onclick="() => ActivateRune(runeX, runeY)">
                                     <p>@rune.Sigil</p>
                                 </button>
                             }
