@@ -1,0 +1,14 @@
+#cipher-box-board td, tr, .cipher-box-rune-stone {
+    width:60px;
+    height: 60px;
+}
+
+#cipher-box-board button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    outline: inherit;
+}
