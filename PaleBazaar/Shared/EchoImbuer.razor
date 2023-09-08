@@ -1,0 +1,22 @@
+﻿<div class="dropdown-container">
+    <input type="checkbox" id="menuToggle" class="menu-toggle">
+    <label class="dropbtn" for="menuToggle">Imbue Echo</label>
+    <div class="dropdown">
+        <EditForm Model="ImbueModel" OnValidSubmit="ImbueEcho">
+            <div>
+                <label for="image">Upload image(s):</label>
+                <InputFile OnChange="HandleFileSelected" multiple accept=".png, .jpg, .jpeg"  required/>
+            </div>
+            <div>
+                <label for="name">Name (Optional):</label>
+                <InputText @bind-Value="ImbueModel.Name" />
+            </div>
+            <div>
+                <label for="altText">Alt Text (Optional):</label>
+                <InputText @bind-Value="ImbueModel.AltText" />
+            </div>
+            <button type="submit">Imbue Echo</button>
+        </EditForm>
+
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using PaleBazaar.MechanistTower.Entities;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using PaleBazaar.MechanistTower.Entities;
 using PaleBazaar.MechanistTower.Entities.EternalSymbols;
 using PaleBazaar.MechanistTower.Tomes;
 
@@ -22,7 +23,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
             return echoes.ToList();
         }
 
-        public async Task ImbueEcho(IFormFile[] files, string name, string altText)
+        public async Task ImbueEcho(IBrowserFile[] files, string name, string altText)
         {
             foreach (var file in files)
             {

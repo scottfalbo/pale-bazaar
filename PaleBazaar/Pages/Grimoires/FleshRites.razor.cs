@@ -40,5 +40,10 @@ namespace PaleBazaar.Pages.Grimoires
         {
             ActiveImageIndex = index;
         }
+
+        private async Task EchoSubmitted()
+        {
+            Echoes = await _echoChanters.GetEchoes(OculusEchoCyphers.FleshRite);
+        }
     }
 }

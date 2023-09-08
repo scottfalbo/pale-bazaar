@@ -1,4 +1,5 @@
-﻿using PaleBazaar.MechanistTower.Entities;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using PaleBazaar.MechanistTower.Entities;
 
 namespace PaleBazaar.MechanistTower.SpellChanters
 {
@@ -6,7 +7,7 @@ namespace PaleBazaar.MechanistTower.SpellChanters
     {
         Task<List<Echo>> GetEchoes(string eternalSymbol);
 
-        Task ImbueEcho(IFormFile[] files, string name, string altText);
+        Task ImbueEcho(IBrowserFile[] files, string name, string altText);
 
         Task ShatterEcho(string id, string partitionKey, string fileName, string thumbnailFileName);
     }

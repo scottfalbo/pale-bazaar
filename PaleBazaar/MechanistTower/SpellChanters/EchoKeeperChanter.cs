@@ -1,5 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Microsoft.AspNetCore.Components.Forms;
 using PaleBazaar.MechanistTower.Configuration;
 using PaleBazaar.MechanistTower.Entities;
 using PaleBazaar.MechanistTower.Manipulators;
@@ -33,9 +34,9 @@ namespace PaleBazaar.MechanistTower.SpellChanters
                 cancellationToken: default);
         }
 
-        public async Task InscribeEcho(IFormFile file, Echo oculusEcho)
+        public async Task InscribeEcho(IBrowserFile file, Echo oculusEcho)
         {
-            var echoFileName = _echoShaper.AugmentRunicNaming(file.FileName);
+            var echoFileName = _echoShaper.AugmentRunicNaming(file.Name);
             var reshapedEcho = _echoShaper.ShapeEcho(file, 1920);
             var contentType = file.ContentType;
 
