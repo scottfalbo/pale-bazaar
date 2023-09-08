@@ -26,8 +26,20 @@
         </table>
     </div>
 
-    <div id="cipher-box-log">
-        <p>@TeleportTranscript</p>
+    <div id="cipher-box-controls">
 
+        <div id="cipher-box-log">
+            @if (ShowCounter)
+            {
+                <p>@TeleportTranscript</p>
+            }
+        </div>
+        
+        <label class="cipher-counter-switch">
+            <input type="checkbox" @bind="ShowCounter" />
+            <span class="cipher-switch-slider"></span>
+        </label>
+
+        <button @onclick="ReScatterRunes">Scatter Runes</button>
     </div>
 </section>

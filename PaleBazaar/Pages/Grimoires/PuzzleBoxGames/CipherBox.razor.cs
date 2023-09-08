@@ -13,6 +13,8 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
         public int GameBoardY => CipherBoard.GameBoardY;
         public bool Victory => CipherBoard.Victory;
 
+        private bool ShowCounter = true;
+
         protected override void OnInitialized()
         {
             CipherBoard = new CipherBoard(4, 4);
@@ -26,9 +28,14 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
 
                 if (Victory)
                 {
-                    CipherBoard.GameBoard[GameBoardX -1, GameBoardY -1] = CipherBoard.ExiledRune;
+                    CipherBoard.GameBoard[GameBoardX - 1, GameBoardY - 1] = CipherBoard.ExiledRune;
                 }
             }
+        }
+
+        public void ReScatterRunes()
+        {
+            CipherBoard.ReScatterBoard();
         }
     }
 }
