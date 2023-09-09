@@ -9,7 +9,6 @@ namespace PaleBazaar.Shared
         [Inject]
         public IEchoChanters EchoChanters { get; set; }
 
-        private IFormFile[] UploadedFiles;
         private string Name;
         private string AltText = "Flesh Rite by Scott Falbo";
         private ImbueEchoModel ImbueModel = new ImbueEchoModel();
