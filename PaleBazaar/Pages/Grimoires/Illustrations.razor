@@ -1,5 +1,7 @@
 ﻿@page "/illustrations"
 
+@using PaleBazaar.MechanistTower.Entities.EternalSymbols;
+
 <PageTitle>Illustrations</PageTitle>
 
 <section id="illustrations">
@@ -19,7 +21,7 @@
 
     @if (IsWizardOverlord)
     {
-        <p>admin menu</p>
+        <EchoImbuer ImbueEchoSubmitted="EchoSubmitted" EternalSymbol="@OculusEchoCyphers.Illustration" />
     }
 
     <div class="gallery-chamber-synopsis">
