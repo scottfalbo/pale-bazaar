@@ -37,13 +37,13 @@ namespace PaleBazaar.MechanistTower.SpellChanters
         public async Task InscribeEcho(IBrowserFile file, Echo oculusEcho)
         {
             var echoFileName = _echoShaper.AugmentRunicNaming(file.Name);
-            var reshapedEcho = _echoShaper.ShapeEcho(file, 1920);
+            var reshapedEcho = await _echoShaper.ShapeEcho(file, 1920);
             var contentType = file.ContentType;
 
             var echo = await InscribeEcho(reshapedEcho, echoFileName, contentType);
 
             var faintFileName = $"thumb_{echoFileName}";
-            var faintReshapedEcho = _echoShaper.ShapeEcho(file, 177, 100);
+            var faintReshapedEcho = await _echoShaper.ShapeEcho(file, 177, 100);
 
             var faintEcho = await InscribeEcho(faintReshapedEcho, faintFileName, contentType);
 
