@@ -29,6 +29,8 @@ namespace PaleBazaar.Shared
 
         private async Task ImbueEcho()
         {
+            InscribeDefaults();
+
             if (ImbueModel.UploadedFiles is not null && ImbueModel.UploadedFiles.Length > 0)
             {
                 await EchoChanters.ImbueEcho(ImbueModel.UploadedFiles, EternalSymbol, ImbueModel.Name, ImbueModel.AltText);
