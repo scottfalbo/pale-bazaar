@@ -23,19 +23,19 @@ namespace PaleBazaar.MechanistTower.SpellChanters
             return echoes.ToList();
         }
 
-        public async Task ImbueEcho(IBrowserFile[] files, string name, string altText)
+        public async Task ImbueEcho(IBrowserFile[] files, string eternalSymbol, string name, string altText)
         {
             foreach (var file in files)
             {
-                var fleshRite = new Echo(OculusEchoCyphers.FleshRite)
+                var echo = new Echo(eternalSymbol)
                 {
                     Name = name,
                     AltText = altText,
                 };
 
-                await _echoKeeperChanter.InscribeEcho(file, fleshRite);
+                await _echoKeeperChanter.InscribeEcho(file, echo);
 
-                await _echoesTome.ImbueEchoAsync(fleshRite);
+                await _echoesTome.ImbueEchoAsync(echo);
             }
         }
 

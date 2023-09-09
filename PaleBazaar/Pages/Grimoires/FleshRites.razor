@@ -1,5 +1,7 @@
 ﻿@page "/fleshrites"
 
+@using PaleBazaar.MechanistTower.Entities.EternalSymbols;
+
 <PageTitle>Flesh Rites</PageTitle>
 
 <section id="flesh-rites">
@@ -19,7 +21,7 @@
 
     @if (IsWizardOverlord)
     {
-        <EchoImbuer ImbueEchoSubmitted="EchoSubmitted" />
+        <EchoImbuer ImbueEchoSubmitted="EchoSubmitted" EternalSymbol="@OculusEchoCyphers.FleshRite"/>
     }
 
     <div class="gallery-chamber-synopsis">
