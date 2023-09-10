@@ -32,6 +32,8 @@ namespace PaleBazaar.MechanistTower.SpellChanters
                 snapshotsOption: DeleteSnapshotsOption.IncludeSnapshots,
                 conditions: null,
                 cancellationToken: default);
+
+            Console.WriteLine($"Banished {fileName}");
         }
 
         public async Task InscribeEcho(IBrowserFile file, Echo oculusEcho)

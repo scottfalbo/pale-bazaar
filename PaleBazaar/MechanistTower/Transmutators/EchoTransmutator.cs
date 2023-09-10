@@ -8,8 +8,12 @@ namespace PaleBazaar.MechanistTower.Transmutators
     {
         public Echo InfernalContractToEcho(InfernalContract infernalContract)
         {
-            return new Echo(infernalContract.EternalSymbol)
+            return new Echo()
             {
+                Id = infernalContract.Id,
+                PartitionKey = infernalContract.PartitionKey,
+                EternalSymbol = infernalContract.EternalSymbol,
+                CreatedDateTime = infernalContract.CreatedDateTime,
                 Name = infernalContract.Name,
                 ImageUrl = infernalContract.ImageUrl,
                 ThumbnailUrl = infernalContract.ThumbnailUrl,

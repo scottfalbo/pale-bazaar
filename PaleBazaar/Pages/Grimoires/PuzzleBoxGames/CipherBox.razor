@@ -15,9 +15,9 @@
                         <td class="cipher-box-rune-cell">
                             @if (rune != null)
                             {
-                                <button class="cipher-box-rune-stone" @onclick="() => ActivateRune(runeX, runeY)">
-                                    <p>@rune.Sigil</p>
-                                </button>
+                                <div class="cipher-box-rune-stone" @onclick="() => ActivateRune(runeX, runeY)">
+                                    <img src="@rune.ImageUrl" />
+                                </div>
                             }
                         </td>
                     }

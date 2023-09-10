@@ -14,7 +14,7 @@
                     @if (IsWizardOverLord)
                     {
                         <div class="menu-buttons-container">
-                            <div class="menu-button delete-button" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal-@echo.value.Id" onclick="preventParentLink(event)">
+                            <div class="menu-button delete-button" @onclick="() => OpenShatterModal(echo.value)">
                                 <div class="x-part"></div>
                                 <div class="x-part"></div>
                             </div>
@@ -30,25 +30,18 @@
                     }
                 </div>
 
-                <div class="modal fade" id="deleteConfirmationModal-@echo.value.Id" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                Shatter this Echo?
-                                @if (echo.value.Name != null && echo.value.Name != "")
-                                {
-                                    <br />
-                                    <span class="echo-name">@echo.value.Name</span>
-                                }
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Preserve</button>
-                                <button type="button" class="btn btn-danger" @onclick="async () => { EchoToShatter = echo.value; await ShatterEcho(); }" data-bs-dismiss="modal">Shatter</button>
-                            </div>
-                        </div>
+                <ShatterEchoModal @ref="ShatterEchoModalRef">
+                    <div>
+                        Shatter this Echo?
+                        @if (EchoToShatter.Name != null && EchoToShatter.Name != "")
+                        {
+                            <br />
+                            <span class="echo-name">@EchoToShatter.Name</span>
+                        }
+                        <button @onclick="ShatterEchoModalRef.Hide">Preserve</button>
+                        <button @onclick="async () => await ShatterEcho()">Shatter</button>
                     </div>
-                </div>
+                </ShatterEchoModal>
             }
         </div>
 
@@ -77,9 +70,3 @@
         </div>
     }
 </div>
-
-<script>
-    function preventParentLink(event) {
-        event.stopPropagation();
-    }
-</script>

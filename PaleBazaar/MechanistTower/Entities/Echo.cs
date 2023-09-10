@@ -14,7 +14,7 @@
         public bool IsForSale { get; set; }
         public decimal Price { get; set; }
 
-        public Echo() : base("MapperlyDefault")
+        public Echo()
         {
         }
 

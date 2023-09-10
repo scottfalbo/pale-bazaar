@@ -58,7 +58,7 @@
                         Y = y,
                         SolvedX = x,
                         SolvedY = y,
-                        ImageUrl = $"https://something-{counter}.png"
+                        ImageUrl = $"/images/puzzle-box/cipher-box/default_luci_{counter}.png"
                     };
 
                     counter++;

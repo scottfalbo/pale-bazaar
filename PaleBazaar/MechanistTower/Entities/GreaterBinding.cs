@@ -13,5 +13,9 @@
             Id = Guid.NewGuid().ToString();
             PartitionKey = eternalSymbol;
         }
+
+        public GreaterBinding()
+        {
+        }
     }
 }
