@@ -43,8 +43,9 @@
             <button @onclick="ReScatterRunes">Scatter Runes</button>
         </div>
         <div>
-            <InputFile OnChange="HandleCustomImage" />
+            <InputFile OnChange="HandleCustomImage" required/>
             <select @bind="BoardSize">
+                <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>

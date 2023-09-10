@@ -43,9 +43,20 @@
             TeleportTranscript = 0;
         }
 
+        public void ConjureCustomBoard(List<string> imagePaths, int boardSize)
+        {
+            GameBoard = new GameRune[boardSize, boardSize];
+            GameBoardX = boardSize;
+            GameBoardY = boardSize;
+
+            ConjureCustomRunes(imagePaths, boardSize);
+            ExileRune(boardSize, boardSize);
+            ScatterRunes();
+        }
+
         private void ConjureRunes()
         {
-            var counter = 0;
+            var index = 0;
 
             for (int x = 0; x < GameBoard.GetLength(0); x++)
             {
@@ -53,15 +64,38 @@
                 {
                     GameBoard[x, y] = new GameRune
                     {
-                        Sigil = counter,
+                        Sigil = index,
                         X = x,
                         Y = y,
                         SolvedX = x,
                         SolvedY = y,
-                        ImageUrl = $"/images/puzzle-box/cipher-box/default_luci_{counter}.png"
+                        ImageUrl = $"/images/puzzle-box/cipher-box/default_luci_{index}.png"
                     };
 
-                    counter++;
+                    index++;
+                }
+            }
+        }
+
+        private void ConjureCustomRunes(List<string> imagePaths, int boardSize)
+        {
+            var index = 0;
+
+            for (int x = 0; x < boardSize; x++)
+            {
+                for (int y = 0; y < boardSize; y++)
+                {
+                    GameBoard[x, y] = new GameRune
+                    {
+                        Sigil = index,
+                        X = x,
+                        Y = y,
+                        SolvedX = x,
+                        SolvedY = y,
+                        ImageUrl = $"data:image/png;base64,{imagePaths[index]}"
+                    };
+
+                    index++;
                 }
             }
         }

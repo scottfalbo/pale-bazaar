@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using PaleBazaar.MechanistTower.Manipulators;
 using PaleBazaar.MechanistTower.PuzzleBoxWorkshop.CipherBox;
 
 namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
 {
     public partial class CipherBox : ComponentBase
     {
+        [Inject]
+        private IEchoShaper _echoShaper { get; set; }
+
         private CipherBoard CipherBoard { get; set; }
 
         public int TeleportTranscript => CipherBoard.TeleportTranscript;
@@ -46,10 +50,11 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
             UploadImage = e.File;
         }
 
-        private void CustomizeRunes()
+        private async Task CustomizeRunes()
         {
-            Console.WriteLine(UploadImage);
-            Console.WriteLine(BoardSize);
+            var paths = await _echoShaper.SplitCipherEcho(UploadImage, BoardSize);
+
+            CipherBoard.ConjureCustomBoard(paths, BoardSize);
         }
     }
 }

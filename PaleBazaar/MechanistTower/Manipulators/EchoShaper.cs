@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using SixLabors.ImageSharp.Formats.Png;
 using System.Text.RegularExpressions;
 
 namespace PaleBazaar.MechanistTower.Manipulators
@@ -63,6 +64,60 @@ namespace PaleBazaar.MechanistTower.Manipulators
 
             stream.Position = 0;
             return stream;
+        }
+
+        public async Task<List<string>> SplitCipherEcho(IBrowserFile file, int boardSize)
+        {
+            var images = new List<Image<Rgba32>>();
+
+            using var memoryStream = new MemoryStream();
+            await file.OpenReadStream().CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+
+            using var image = Image.Load<Rgba32>(memoryStream);
+
+            var minDim = Math.Min(image.Width, image.Height);
+            var cropRectangle = new Rectangle((image.Width - minDim) / 2, (image.Height - minDim) / 2, minDim, minDim);
+
+            image.Mutate(ctx => ctx.Crop(cropRectangle));
+
+            image.Mutate(ctx => ctx.Resize(new ResizeOptions
+            {
+                Size = new Size(boardSize * 80, boardSize * 80),
+                Mode = ResizeMode.Max
+            }));
+
+            var width = image.Width / boardSize;
+            var height = image.Height / boardSize;
+
+            for (var y = 0; y < boardSize; y++)
+            {
+                for (var x = 0; x < boardSize; x++)
+                {
+                    var sourceRect = new Rectangle(x * width, y * height, width, height);
+                    var clone = image.Clone(ctx => ctx.Crop(sourceRect));
+                    images.Add(clone);
+                }
+            }
+
+            return ConvertSplitImage(images);
+        }
+
+        private static List<string> ConvertSplitImage(List<Image<Rgba32>> images)
+        {
+            var imagePaths = new List<string>();
+
+            foreach (var image in images)
+            {
+                using var ms = new MemoryStream();
+                image.Save(ms, new PngEncoder());
+                var byteImage = ms.ToArray();
+                var path = Convert.ToBase64String(byteImage);
+
+                imagePaths.Add(path);
+            }
+
+            return imagePaths;
         }
     }
 }
