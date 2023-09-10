@@ -27,19 +27,31 @@
     </div>
 
     <div id="cipher-box-controls">
+        <div>
+            <div id="cipher-box-log">
+                @if (ShowCounter)
+                {
+                    <p>@TeleportTranscript</p>
+                }
+            </div>
 
-        <div id="cipher-box-log">
-            @if (ShowCounter)
-            {
-                <p>@TeleportTranscript</p>
-            }
+            <label class="cipher-counter-switch">
+                <input type="checkbox" @bind="ShowCounter" />
+                <span class="cipher-switch-slider"></span>
+            </label>
+
+            <button @onclick="ReScatterRunes">Scatter Runes</button>
         </div>
-        
-        <label class="cipher-counter-switch">
-            <input type="checkbox" @bind="ShowCounter" />
-            <span class="cipher-switch-slider"></span>
-        </label>
-
-        <button @onclick="ReScatterRunes">Scatter Runes</button>
+        <div>
+            <InputFile OnChange="HandleCustomImage" />
+            <select @bind="BoardSize">
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <button @onclick="CustomizeRunes">Submit</button>
+        </div>
     </div>
 </section>

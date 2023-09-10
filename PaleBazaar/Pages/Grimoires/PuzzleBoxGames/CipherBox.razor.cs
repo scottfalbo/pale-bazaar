@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using PaleBazaar.MechanistTower.PuzzleBoxWorkshop.CipherBox;
 
 namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
@@ -14,6 +15,8 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
         public bool Victory => CipherBoard.Victory;
 
         private bool ShowCounter = true;
+        private IBrowserFile UploadImage;
+        private int BoardSize { get; set; } = 4;
 
         protected override void OnInitialized()
         {
@@ -36,6 +39,17 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
         public void ReScatterRunes()
         {
             CipherBoard.ReScatterBoard();
+        }
+
+        private void HandleCustomImage(InputFileChangeEventArgs e)
+        {
+            UploadImage = e.File;
+        }
+
+        private void CustomizeRunes()
+        {
+            Console.WriteLine(UploadImage);
+            Console.WriteLine(BoardSize);
         }
     }
 }

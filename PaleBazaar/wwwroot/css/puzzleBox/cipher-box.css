@@ -15,9 +15,14 @@
 
 #cipher-box-controls {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: start;
     gap: 10px;
+}
+
+#cipher-box-controls > div {
+    display: flex;
+    gap: 1rem;
 }
 
 #cipher-box-log {
