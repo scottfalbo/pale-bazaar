@@ -17,10 +17,11 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
         public int GameBoardX => CipherBoard.GameBoardX;
         public int GameBoardY => CipherBoard.GameBoardY;
         public bool Victory => CipherBoard.Victory;
-
-        private bool ShowCounter = true;
-        private IBrowserFile UploadImage;
         private int BoardSize { get; set; } = 4;
+        private bool ShowSigil { get; set; } = false;
+        private bool ShowCounter { get; set; } = true;
+
+        private IBrowserFile UploadImage;
 
         protected override void OnInitialized()
         {

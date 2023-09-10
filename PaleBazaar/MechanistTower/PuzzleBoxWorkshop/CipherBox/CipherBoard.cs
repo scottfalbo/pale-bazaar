@@ -52,6 +52,8 @@
             ConjureCustomRunes(imagePaths, boardSize);
             ExileRune(boardSize, boardSize);
             ScatterRunes();
+
+            TeleportTranscript = 0;
         }
 
         private void ConjureRunes()

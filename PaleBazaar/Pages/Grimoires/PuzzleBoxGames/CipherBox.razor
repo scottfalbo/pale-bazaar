@@ -17,6 +17,12 @@
                             {
                                 <div class="cipher-box-rune-stone" @onclick="() => ActivateRune(runeX, runeY)">
                                     <img src="@rune.ImageUrl" />
+                                    @if (ShowSigil)
+                                    {
+                                        <div class="sigil-circle">
+                                            <span class="sigil-overlay">@((rune.Sigil + 1))</span>
+                                        </div>
+                                    }
                                 </div>
                             }
                         </td>
@@ -35,7 +41,8 @@
                 }
             </div>
 
-            <label class="cipher-counter-switch">
+            <p>Show Counter</p>
+            <label class="cipher-switch">
                 <input type="checkbox" @bind="ShowCounter" />
                 <span class="cipher-switch-slider"></span>
             </label>
@@ -53,6 +60,13 @@
                 <option value="8">8</option>
             </select>
             <button @onclick="CustomizeRunes">Submit</button>
+        </div>
+        <div>
+            <p>Show Position</p>
+            <label class="cipher-switch">
+                <input type="checkbox" @bind="ShowSigil" />
+                <span class="cipher-switch-slider"></span>
+            </label>
         </div>
     </div>
 </section>
