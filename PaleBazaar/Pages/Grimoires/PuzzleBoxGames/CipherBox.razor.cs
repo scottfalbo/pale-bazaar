@@ -14,10 +14,9 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
 
         public int TeleportTranscript => CipherBoard.TeleportTranscript;
         public GameRune[,] GameBoard => CipherBoard.GameBoard;
-        public int GameBoardX => CipherBoard.GameBoardX;
-        public int GameBoardY => CipherBoard.GameBoardY;
+        public int GameBoardSize { get; set; }
         public bool Victory => CipherBoard.Victory;
-        private int BoardSize { get; set; } = 4;
+
         private bool ShowSigil { get; set; } = false;
         private bool ShowCounter { get; set; } = true;
 
@@ -25,7 +24,8 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
 
         protected override void OnInitialized()
         {
-            CipherBoard = new CipherBoard(4, 4);
+            CipherBoard = new CipherBoard(4, 4); // call method here
+            GameBoardSize = CipherBoard.GameBoardSize;
         }
 
         public void ActivateRune(int x, int y)
@@ -36,7 +36,7 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
 
                 if (Victory)
                 {
-                    CipherBoard.GameBoard[GameBoardX - 1, GameBoardY - 1] = CipherBoard.ExiledRune;
+                    CipherBoard.GameBoard[GameBoardSize - 1, GameBoardSize - 1] = CipherBoard.ExiledRune;
                 }
             }
         }
@@ -53,9 +53,9 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
 
         private async Task CustomizeRunes()
         {
-            var paths = await _echoShaper.SplitCipherEcho(UploadImage, BoardSize);
+            var paths = await _echoShaper.SplitCipherEcho(UploadImage, GameBoardSize);
 
-            CipherBoard.ConjureCustomBoard(paths, BoardSize);
+            CipherBoard.ConjureCustomBoard(paths, GameBoardSize); // and here
         }
     }
 }

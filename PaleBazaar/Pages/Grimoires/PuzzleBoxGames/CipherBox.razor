@@ -3,10 +3,10 @@
 
     <div id="cipher-box-board">
         <table>
-            @for (var i = 0; i < @GameBoardX; i++)
+            @for (var i = 0; i < GameBoardSize; i++)
             {
                 <tr>
-                    @for (var j = 0; j < @GameBoardY; j++)
+                    @for (var j = 0; j < GameBoardSize; j++)
                     {
                         var rune = GameBoard[i, j];
                         var runeX = rune?.X ?? 0;
@@ -51,7 +51,7 @@
         </div>
         <div>
             <InputFile OnChange="HandleCustomImage" required/>
-            <select @bind="BoardSize">
+            <select @bind="GameBoardSize">
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>

@@ -3,8 +3,7 @@
     public class CipherBoard
     {
         public GameRune[,] GameBoard { get; set; }
-        public int GameBoardX { get; set; }
-        public int GameBoardY { get; set; }
+        public int GameBoardSize { get; set; }
         public GameRune ExiledRune { get; set; }
         public bool Victory => IsVictorious();
 
@@ -13,8 +12,7 @@
         public CipherBoard(int x, int y)
         {
             GameBoard = new GameRune[x, y];
-            GameBoardX = x;
-            GameBoardY = y;
+            GameBoardSize = x;
 
             ConjureRunes();
             ExileRune(x, y);
@@ -46,8 +44,8 @@
         public void ConjureCustomBoard(List<string> imagePaths, int boardSize)
         {
             GameBoard = new GameRune[boardSize, boardSize];
-            GameBoardX = boardSize;
-            GameBoardY = boardSize;
+            GameBoardSize = boardSize;
+            GameBoardSize = boardSize;
 
             ConjureCustomRunes(imagePaths, boardSize);
             ExileRune(boardSize, boardSize);
@@ -157,9 +155,9 @@
             return (x, y) switch
             {
                 var (currentX, _) when currentX - 1 >= 0 && GameBoard[currentX - 1, y] == null => (currentX - 1, y),
-                var (currentX, _) when currentX + 1 < GameBoardX && GameBoard[currentX + 1, y] == null => (currentX + 1, y),
+                var (currentX, _) when currentX + 1 < GameBoardSize && GameBoard[currentX + 1, y] == null => (currentX + 1, y),
                 var (_, currentY) when currentY - 1 >= 0 && GameBoard[x, currentY - 1] == null => (x, currentY - 1),
-                var (_, currentY) when currentY + 1 < GameBoardY && GameBoard[x, currentY + 1] == null => (x, currentY + 1),
+                var (_, currentY) when currentY + 1 < GameBoardSize && GameBoard[x, currentY + 1] == null => (x, currentY + 1),
                 _ => null
             };
         }
