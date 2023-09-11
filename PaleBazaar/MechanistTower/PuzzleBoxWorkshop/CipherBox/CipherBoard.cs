@@ -9,14 +9,21 @@
 
         public int TeleportTranscript;
 
-        public CipherBoard(int x, int y)
+        public CipherBoard(int gameBoardSize)
         {
-            GameBoard = new GameRune[x, y];
-            GameBoardSize = x;
+            ConjureBoard(gameBoardSize);
+        }
 
-            ConjureRunes();
-            ExileRune(x, y);
+        public void ConjureBoard(int gameBoardSize, List<string> imagePaths = null)
+        {
+            GameBoard = new GameRune[gameBoardSize, gameBoardSize];
+            GameBoardSize = gameBoardSize;
+
+            ConjureRunes(gameBoardSize, imagePaths);
+            ExileRune();
             ScatterRunes();
+
+            TeleportTranscript = 0;
         }
 
         public void TranslocateRune(int x, int y)
@@ -41,26 +48,14 @@
             TeleportTranscript = 0;
         }
 
-        public void ConjureCustomBoard(List<string> imagePaths, int boardSize)
-        {
-            GameBoard = new GameRune[boardSize, boardSize];
-            GameBoardSize = boardSize;
-            GameBoardSize = boardSize;
-
-            ConjureCustomRunes(imagePaths, boardSize);
-            ExileRune(boardSize, boardSize);
-            ScatterRunes();
-
-            TeleportTranscript = 0;
-        }
-
-        private void ConjureRunes()
+        private void ConjureRunes(int gameBoardSize, List<string> imagePaths = null)
         {
             var index = 0;
+            var customImage = imagePaths != null;
 
-            for (int x = 0; x < GameBoard.GetLength(0); x++)
+            for (int x = 0; x < gameBoardSize; x++)
             {
-                for (int y = 0; y < GameBoard.GetLength(1); y++)
+                for (int y = 0; y < gameBoardSize; y++)
                 {
                     GameBoard[x, y] = new GameRune
                     {
@@ -69,30 +64,8 @@
                         Y = y,
                         SolvedX = x,
                         SolvedY = y,
-                        ImageUrl = $"/images/puzzle-box/cipher-box/default_luci_{index}.png"
-                    };
-
-                    index++;
-                }
-            }
-        }
-
-        private void ConjureCustomRunes(List<string> imagePaths, int boardSize)
-        {
-            var index = 0;
-
-            for (int x = 0; x < boardSize; x++)
-            {
-                for (int y = 0; y < boardSize; y++)
-                {
-                    GameBoard[x, y] = new GameRune
-                    {
-                        Sigil = index,
-                        X = x,
-                        Y = y,
-                        SolvedX = x,
-                        SolvedY = y,
-                        ImageUrl = $"data:image/png;base64,{imagePaths[index]}"
+                        ImageUrl = customImage ? $"data:image/png;base64,{imagePaths[index]}"
+                            : $"/images/puzzle-box/cipher-box/default_luci_{index}.png"
                     };
 
                     index++;
@@ -106,11 +79,11 @@
 
             for (var i = 0; i < 1000; i++)
             {
-                var randomX = random.Next(0, GameBoard.GetLength(0));
-                var randomY = random.Next(0, GameBoard.GetLength(1));
+                var randomX = random.Next(0, GameBoardSize);
+                var randomY = random.Next(0, GameBoardSize);
 
-                var randomX2 = random.Next(0, GameBoard.GetLength(0));
-                var randomY2 = random.Next(0, GameBoard.GetLength(1));
+                var randomX2 = random.Next(0, GameBoardSize);
+                var randomY2 = random.Next(0, GameBoardSize);
 
                 var runeOne = GameBoard[randomX, randomY];
                 if (runeOne != null)
@@ -131,10 +104,12 @@
             }
         }
 
-        private void ExileRune(int x, int y)
+        private void ExileRune()
         {
-            ExiledRune = GameBoard[x - 1, y - 1];
-            GameBoard[x - 1, y - 1] = null;
+            var index = GameBoardSize - 1;
+
+            ExiledRune = GameBoard[index, index];
+            GameBoard[index, index] = null;
         }
 
         private bool IsVictorious()
