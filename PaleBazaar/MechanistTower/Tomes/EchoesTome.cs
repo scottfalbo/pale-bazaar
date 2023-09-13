@@ -3,12 +3,16 @@ using Microsoft.Azure.Cosmos.Linq;
 using PaleBazaar.MechanistTower.Configuration;
 using PaleBazaar.MechanistTower.Entities;
 using PaleBazaar.MechanistTower.Transmutators;
+using System.Dynamic;
 using System.Net;
 
 namespace PaleBazaar.MechanistTower.Tomes
 {
     public class EchoesTome : IEchoesTome
     {
+        private const string CosmosDatabase = "PaleSpecter";
+        private const string CosmosContainer = "Tomes";
+
         private readonly Container _container;
 
         private readonly EchoTransmutator _transmutator;
@@ -16,7 +20,7 @@ namespace PaleBazaar.MechanistTower.Tomes
         public EchoesTome(ICosmosTomeScryer cosmosTomeScryer)
         {
             var scryer = cosmosTomeScryer.ConjureScryer();
-            _container = scryer.GetContainer("PaleSpecter", "Tomes");
+            _container = scryer.GetContainer(CosmosDatabase, CosmosContainer);
 
             _transmutator = new EchoTransmutator();
         }
