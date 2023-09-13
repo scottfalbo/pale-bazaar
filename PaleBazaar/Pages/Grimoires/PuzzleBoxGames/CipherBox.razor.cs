@@ -37,6 +37,7 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames
                 if (Victory)
                 {
                     CipherBoard.GameBoard[GameBoardSize - 1, GameBoardSize - 1] = CipherBoard.ExiledRune;
+                    ShowSigil = false;
                 }
             }
         }
