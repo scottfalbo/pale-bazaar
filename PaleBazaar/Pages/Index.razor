@@ -17,13 +17,12 @@
     </div>
 </section>
 
-<section id="bazaar-banner">
-    <h2>The Pale Bazaar</h2>
-    <div class="image-container">
-        <img src="https://placehold.co/500x700" />
+<section id="bazaar-banner" style="@(ShowBanner ? "" : "display:none;")">
+    <div @onclick="HideBanner">
+        <h2>The Pale Bazaar</h2>
+        <div class="image-container">
+            <img src="https://placehold.co/500x700" />
+        </div>
+        <p>ENTER</p>
     </div>
-    <p>ENTER</p>
 </section>
-
-
-
