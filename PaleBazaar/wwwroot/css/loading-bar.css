@@ -1,0 +1,29 @@
+.loading-bar-container {
+    width: 100%;
+    height: 4px;
+    background-color: #e0e0e0;
+    position: relative;
+}
+
+.loading-bar {
+    position: absolute;
+    height: 4px;
+    width: 0%;
+    background-color: #3f51b5; /* You can change to your preferred color */
+    animation: loadingAnimation 2s infinite;
+}
+
+@keyframes loadingAnimation {
+    0% {
+        left: 0%;
+        width: 0%;
+    }
+    50% {
+        left: 0%;
+        width: 100%;
+    }
+    100% {
+        left: 100%;
+        width: 0%;
+    }
+}
