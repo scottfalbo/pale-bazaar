@@ -1,19 +1,37 @@
-﻿<nav class="flex-column">
+﻿@inject IJSRuntime JSRuntime
+
+@code {
+    private void CollapseNavBar()
+    {
+        JSRuntime.InvokeVoidAsync("collapseNavbar");
+    }
+}
+
+<nav class="flex-column">
     <ul>
         <li class="drop-down-link">
-            <NavLink href="fleshrites">Flesh Rites</NavLink>
+            <NavLink href="fleshrites" @onclick="CollapseNavBar">Flesh Rites</NavLink>
         </li>
         <li class="drop-down-link">
-            <NavLink href="illustrations">Illustrations</NavLink>
+            <NavLink href="illustrations" @onclick="CollapseNavBar">Illustrations</NavLink>
         </li>
         <li class="drop-down-link">
-            <NavLink href="binaryConjuring">Binary Conjuring</NavLink>
+            <NavLink href="binaryConjuring" @onclick="CollapseNavBar">Binary Conjuring</NavLink>
         </li>
         <li class="drop-down-link">
-            <NavLink href="puzzlebox">Puzzle Box</NavLink>
+            <NavLink href="puzzlebox" @onclick="CollapseNavBar">Puzzle Box</NavLink>
         </li>
         <li class="drop-down-link">
-            <NavLink href="cabinetofmiscellany">Cabinet of Miscellany</NavLink>
+            <NavLink href="cabinetofmiscellany" @onclick="CollapseNavBar">Cabinet of Miscellany</NavLink>
         </li>
     </ul>
 </nav>
+
+<script>
+    function collapseNavbar() {
+        const navbar = document.querySelector(".navbar-collapse.show");
+        if (navbar) {
+            navbar.classList.remove("show");
+        }
+    }
+</script>
