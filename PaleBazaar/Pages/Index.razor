@@ -2,27 +2,13 @@
 
 <PageTitle>The Pale Bazaar</PageTitle>
 
-<section id="bazaar-home">
-    <div>
+<section id="bazaar-banner">
+    <NavLink href="grimoirecatalog" class="no-hover-effect">
         <h2>The Pale Bazaar</h2>
-        <img src="https://placehold.co/280x100" />
-        <p class="paragraph-format">
-            Mystica arcanae vocibus resonant, inter sidera lunaque pervagantur.
-        </p>
-    </div>
-    
-    <div id="bazaar-home-nav-container">
-        <h3>Grimoires</h3>
-        <NavMenu />
-    </div>
-</section>
-
-<section id="bazaar-banner" style="@(ShowBanner ? "" : "display:none;")">
-    <div @onclick="HideBanner">
-        <h2>The Pale Bazaar</h2>
+        <p>Echos from the abyss, whispers of creation.</p>
         <div class="image-container">
-            <img src="https://placehold.co/300x500" />
+            <img src="/images/intro-image.jpg" />
         </div>
-        <p>ENTER</p>
-    </div>
+        <h3>ENTER</h3>
+    </NavLink>
 </section>

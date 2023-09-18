@@ -6,6 +6,7 @@ html, body, .page-container, .page {
 body {
   background-color: rgb(23, 23, 23);
   color: rgb(182, 236, 255);
+  font-family: 'Josefin Sans', sans-serif
 }
 
 .page-container {
@@ -46,4 +47,9 @@ display: block;
 
 .hide-me {
     display: none;
+}
+
+.no-hover-effect:hover {
+    color: inherit;
+    text-decoration: none;
 }

@@ -7,7 +7,7 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
     justify-items: center;
     align-content: center;
     background-color: #000000;
@@ -15,10 +15,11 @@
     z-index: 1000;
     padding: 10px;
     cursor: pointer;
+    color: rgb(255, 255, 255);
 }
 
 #bazaar-banner .image-container {
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     max-width: 100%;
     display: flex;
     justify-content: center;
@@ -29,6 +30,7 @@
 #bazaar-banner img {
     max-width: 80%;
     height: auto;
+    max-height: 560px;
 }
 
 #bazaar-banner h2 {
@@ -39,10 +41,23 @@
 }
 
 #bazaar-banner p {
-    grid-row: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+#bazaar-banner h3 {
+    grid-row: 4 / 5;
     font-size: 1.8em;
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Special Elite', cursive;
     margin: 20px auto;
+}
+
+#bazaar-banner.hidden {
+    opacity: 0;
+    display: block !important;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
 }
 
 /* Gallery stuff */
