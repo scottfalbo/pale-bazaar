@@ -97,7 +97,15 @@ namespace PaleBazaar.MechanistTower.Configuration
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                db.Database.Migrate();
+                try
+                {
+                    db.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    // Log the error
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             app.UseHttpsRedirection();
@@ -108,14 +116,6 @@ namespace PaleBazaar.MechanistTower.Configuration
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-                DbInitializer.InitializeAsync(userManager, roleManager, configurationSigils).Wait();
-            }
 
             app.MapControllers();
             app.MapBlazorHub();
