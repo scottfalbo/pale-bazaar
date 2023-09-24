@@ -120,6 +120,14 @@ namespace PaleBazaar.MechanistTower.Configuration
             app.MapControllers();
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                DbInitializer.InitializeAsync(userManager, roleManager, configurationSigils).Wait();
+            }
         }
     }
 }
