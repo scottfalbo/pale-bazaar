@@ -4,8 +4,13 @@
 
 <h3>PuzzleBox</h3>
 
-<PaleBazaar.Pages.Grimoires.PuzzleBoxGames.CipherBox />
+<EditForm>
+    <InputSelect @bind-Value="Game" @onchange="UpdateGame">
+        <option value="Welcome">Welcome</option>
+        <option value="CipherBox">Cipher Box</option>
+    </InputSelect>
+</EditForm>
 
-@code {
-
-}
+<div>
+    <DynamicComponent Type="@_gameType" />
+</div>
