@@ -4,13 +4,11 @@
 
 <h3>PuzzleBox</h3>
 
-<EditForm>
-    <InputSelect @bind-Value="Game" @onchange="UpdateGame">
-        <option value="Welcome">Welcome</option>
-        <option value="CipherBox">Cipher Box</option>
-    </InputSelect>
-</EditForm>
+<nav class="flex-column">
+    <ul>
+        <li class="drop-down-link">
+            <NavLink href="cipherbox">Cipher Box</NavLink>
+        </li>
+    </ul>
+</nav>
 
-<div>
-    <DynamicComponent Type="@_gameType" />
-</div>
