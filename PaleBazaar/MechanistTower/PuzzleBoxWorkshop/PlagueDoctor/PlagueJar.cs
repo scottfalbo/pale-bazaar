@@ -2,9 +2,9 @@
 {
     public class PlagueJar
     {
-        private const int BoardWidth = 10;
-        private const int BoardHeight = 20;
-        private int[,] Board = new int[BoardWidth, BoardHeight];
+        private const int BoardWidth = 8;
+        private const int BoardHeight = 16;
+        private CellState[,] Board = new CellState[BoardWidth, BoardHeight];
 
         public PlagueJar()
         {
@@ -12,7 +12,7 @@
             {
                 for (int y = 0; y < BoardHeight; y++)
                 {
-                    Board[x, y] = 0;
+                    Board[x, y] = CellState.Empty;
                 }
             }
         }
