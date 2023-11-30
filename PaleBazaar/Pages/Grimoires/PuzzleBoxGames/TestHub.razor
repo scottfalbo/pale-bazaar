@@ -1,0 +1,22 @@
+﻿@page "/testhub"
+
+@using Microsoft.AspNetCore.SignalR
+@using PaleBazaar.MechanistTower.Beacons
+
+
+@inject IHubContext<ChatBeacon> chatHub
+
+<h1>Hub Test</h1>
+
+<input @bind="message" />
+<button @onclick="SendMessage">Send</button>
+
+@code {
+    private string message;
+
+    private async Task SendMessage()
+    {
+        await chatHub.Clients.All.SendAsync("ReceiveMessage", "User", message);
+        message = string.Empty;
+    }
+}

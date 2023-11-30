@@ -7,6 +7,7 @@ using Microsoft.Extensions.Azure;
 using PaleBazaar.Areas.Identity;
 using PaleBazaar.Data;
 using PaleBazaar.GuardianAegis;
+using PaleBazaar.MechanistTower.Beacons;
 using PaleBazaar.MechanistTower.Manipulators;
 using PaleBazaar.MechanistTower.SpellChanters;
 using PaleBazaar.MechanistTower.Tomes;
@@ -61,6 +62,8 @@ namespace PaleBazaar.MechanistTower.Configuration
 
             builder.Services.AddSingleton<ICosmosTomeScryer>(
                 new CosmosTomeScryer(cosmosClient));
+
+            builder.Services.AddSignalR();
 
             builder.Services.AddAzureClients(builder =>
             {
@@ -121,6 +124,8 @@ namespace PaleBazaar.MechanistTower.Configuration
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
 
+            app.MapHub<ChatBeacon>("/chatbeacon");
+            
             using (var scope = app.Services.CreateScope())
             {
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
