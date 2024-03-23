@@ -7,10 +7,13 @@ namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.CipherBox;
 public class CipherBoard
 {
     public int TeleportTranscript;
+
     public GameRune ExiledRune { get; set; }
+
     public GameRune[,] GameBoard { get; set; }
 
     public int GameBoardSize { get; set; }
+
     public bool Victory => IsVictorious();
 
     public CipherBoard(int gameBoardSize)

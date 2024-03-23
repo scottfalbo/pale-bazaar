@@ -27,7 +27,9 @@ public partial class CipherBox : ComponentBase
     private IEchoShaper _echoShaper { get; set; }
 
     private CipherBoard CipherBoard { get; set; }
+
     private bool ShowCounter { get; set; } = true;
+
     private bool ShowSigil { get; set; } = false;
 
     public void ActivateRune(int x, int y)
