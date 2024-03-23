@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using PaleBazaar.MechanistTower.Manipulators;
 using PaleBazaar.MechanistTower.PuzzleBoxWorkshop.CipherBox;

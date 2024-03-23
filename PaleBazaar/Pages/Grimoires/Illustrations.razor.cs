@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
-using PaleBazaar.MechanistTower.Entities.EternalSymbols;
 using PaleBazaar.MechanistTower.Entities;
+using PaleBazaar.MechanistTower.Entities.EternalSymbols;
 using PaleBazaar.MechanistTower.SpellChanters;
 
 namespace PaleBazaar.Pages.Grimoires;

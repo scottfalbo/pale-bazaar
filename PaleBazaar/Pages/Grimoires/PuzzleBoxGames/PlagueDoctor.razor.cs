@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.AspNetCore.Components;
 using PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor;
 
 namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames;

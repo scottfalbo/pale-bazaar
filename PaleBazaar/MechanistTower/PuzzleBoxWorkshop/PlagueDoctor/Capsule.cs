@@ -1,4 +1,8 @@
-﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor;
 
 public class Capsule
 {

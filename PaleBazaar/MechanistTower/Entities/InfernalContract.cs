@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
 namespace PaleBazaar.MechanistTower.Entities;

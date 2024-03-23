@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.AspNetCore.Components;
 
 namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames;
 

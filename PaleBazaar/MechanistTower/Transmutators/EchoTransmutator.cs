@@ -1,4 +1,8 @@
-﻿using PaleBazaar.MechanistTower.Entities;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using PaleBazaar.MechanistTower.Entities;
 using Riok.Mapperly.Abstractions;
 
 namespace PaleBazaar.MechanistTower.Transmutators;

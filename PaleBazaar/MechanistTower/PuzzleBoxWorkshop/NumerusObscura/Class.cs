@@ -2,8 +2,8 @@
 // The Pale Bazaar
 // ------------------------------------
 
-namespace PaleBazaar.Pages.Grimoires;
+namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.NumerusObscura;
 
-public partial class BinaryConjuring
+public class Class
 {
 }

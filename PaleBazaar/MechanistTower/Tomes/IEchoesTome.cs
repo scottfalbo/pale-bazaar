@@ -1,4 +1,8 @@
-﻿using PaleBazaar.MechanistTower.Entities;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using PaleBazaar.MechanistTower.Entities;
 
 namespace PaleBazaar.MechanistTower.Tomes;
 

@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.AspNetCore.Components.Forms;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;

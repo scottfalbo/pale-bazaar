@@ -1,4 +1,8 @@
-﻿using Azure.Identity;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Azure.Identity;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Azure.Cosmos;

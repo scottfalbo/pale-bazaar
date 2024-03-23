@@ -1,4 +1,8 @@
-﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.CipherBox;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.CipherBox;
 
 public class CipherBoard
 {

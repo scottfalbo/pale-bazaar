@@ -1,4 +1,8 @@
-﻿#nullable disable
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+#nullable disable
 
 namespace PaleBazaar.MechanistTower.Configuration;
 

@@ -1,4 +1,8 @@
-﻿namespace PaleBazaar.MechanistTower.Configuration;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+namespace PaleBazaar.MechanistTower.Configuration;
 
 public interface IConfigurationSigils
 {

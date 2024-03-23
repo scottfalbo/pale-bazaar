@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.AspNetCore.Components;
 using PaleBazaar.MechanistTower.Entities;
 using PaleBazaar.MechanistTower.SpellChanters;
 

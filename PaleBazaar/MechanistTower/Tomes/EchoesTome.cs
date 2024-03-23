@@ -1,9 +1,12 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
 using PaleBazaar.MechanistTower.Configuration;
 using PaleBazaar.MechanistTower.Entities;
 using PaleBazaar.MechanistTower.Transmutators;
-using System.Dynamic;
 using System.Net;
 
 namespace PaleBazaar.MechanistTower.Tomes;

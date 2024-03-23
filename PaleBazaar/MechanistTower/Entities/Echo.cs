@@ -1,4 +1,8 @@
-﻿namespace PaleBazaar.MechanistTower.Entities;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+namespace PaleBazaar.MechanistTower.Entities;
 
 public class Echo : GreaterBinding
 {

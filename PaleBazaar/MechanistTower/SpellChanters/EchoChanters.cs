@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.AspNetCore.Components.Forms;
 using PaleBazaar.MechanistTower.Entities;
 using PaleBazaar.MechanistTower.Tomes;
 

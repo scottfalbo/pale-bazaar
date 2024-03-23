@@ -1,4 +1,8 @@
-﻿using Azure.Storage.Blobs;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Components.Forms;
 using PaleBazaar.MechanistTower.Configuration;

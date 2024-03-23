@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace PaleBazaar.MechanistTower.Manipulators;
 

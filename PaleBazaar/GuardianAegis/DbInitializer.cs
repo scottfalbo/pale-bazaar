@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+using Microsoft.AspNetCore.Identity;
 using PaleBazaar.MechanistTower.Configuration;
 
 namespace PaleBazaar.GuardianAegis;

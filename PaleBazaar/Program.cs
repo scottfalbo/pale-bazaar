@@ -1,3 +1,7 @@
+// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
 using PaleBazaar.MechanistTower.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);

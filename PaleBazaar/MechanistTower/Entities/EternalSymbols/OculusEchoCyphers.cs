@@ -1,4 +1,8 @@
-﻿namespace PaleBazaar.MechanistTower.Entities.EternalSymbols;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+namespace PaleBazaar.MechanistTower.Entities.EternalSymbols;
 
 public static class OculusEchoCyphers
 {

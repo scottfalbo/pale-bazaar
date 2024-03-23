@@ -1,4 +1,8 @@
-﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.NumerusObscura;
+﻿// ------------------------------------
+// The Pale Bazaar
+// ------------------------------------
+
+namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.NumerusObscura;
 
 public class ObscuraTile
 {
