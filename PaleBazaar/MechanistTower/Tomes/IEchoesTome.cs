@@ -1,17 +1,16 @@
 ﻿using PaleBazaar.MechanistTower.Entities;
 
-namespace PaleBazaar.MechanistTower.Tomes
+namespace PaleBazaar.MechanistTower.Tomes;
+
+public interface IEchoesTome
 {
-    public interface IEchoesTome
-    {
-        Task ImbueEchoAsync(Echo fleshRite);
+    Task ImbueEchoAsync(Echo fleshRite);
 
-        Task<Echo> GetEchoAsync(string id, string partitionKey);
+    Task<Echo> GetEchoAsync(string id, string partitionKey);
 
-        Task<IEnumerable<Echo>> GetEchoesAsync(string eternalSymbol);
+    Task<IEnumerable<Echo>> GetEchoesAsync(string eternalSymbol);
 
-        Task UpdateEchoAsync(Echo updatedFleshRite);
+    Task UpdateEchoAsync(Echo updatedFleshRite);
 
-        Task ShatterEchoAsync(string id, string partitionKey);
-    }
+    Task ShatterEchoAsync(string id, string partitionKey);
 }

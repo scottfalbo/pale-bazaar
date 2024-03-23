@@ -11,121 +11,120 @@ using PaleBazaar.MechanistTower.Manipulators;
 using PaleBazaar.MechanistTower.SpellChanters;
 using PaleBazaar.MechanistTower.Tomes;
 
-namespace PaleBazaar.MechanistTower.Configuration
+namespace PaleBazaar.MechanistTower.Configuration;
+
+public static class ConfigurationRituals
 {
-    public static class ConfigurationRituals
+    public static ConfigurationSigils InvokeConfigurationSigils(
+        WebApplicationBuilder builder,
+        IConfiguration configuration)
     {
-        public static ConfigurationSigils InvokeConfigurationSigils(
-            WebApplicationBuilder builder,
-            IConfiguration configuration)
+        var keyVaultUri = configuration["KeyVaultUri"];
+
+        builder.Configuration
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .AddUserSecrets(builder.Environment.ApplicationName);
+
+        var clientId = configuration["Azure:ClientId"];
+        var clientSecret = configuration["Azure:ClientSecret"];
+        var tenantId = configuration["Azure:TenantId"];
+
+        builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUri), new ClientSecretCredential(tenantId, clientId, clientSecret));
+
+        var configurationSigils = new ConfigurationSigils();
+        builder.Configuration.Bind(configurationSigils);
+
+        builder.Services.AddSingleton<IConfigurationSigils>(configurationSigils);
+        return configurationSigils;
+    }
+
+    public static void AttuneEnchantments(
+        WebApplicationBuilder builder,
+        IConfigurationSigils configurationSigils)
+    {
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(connectionString));
+
+        builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+
+        var cosmosEndpoint = configurationSigils.CosmosEndpoint;
+        var cosmosKey = configurationSigils.CosmosKey;
+        var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
+
+        builder.Services.AddSingleton<ICosmosTomeScryer>(
+            new CosmosTomeScryer(cosmosClient));
+
+        builder.Services.AddAzureClients(builder =>
         {
-            var keyVaultUri = configuration["KeyVaultUri"];
+            builder.AddBlobServiceClient(configurationSigils.BlobConnectionString);
+        });
 
-            builder.Configuration
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .AddUserSecrets(builder.Environment.ApplicationName);
+        builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+        builder.Services.AddServerSideBlazor();
 
-            var clientId = configuration["Azure:ClientId"];
-            var clientSecret = configuration["Azure:ClientSecret"];
-            var tenantId = configuration["Azure:TenantId"];
+        builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 
-            builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUri), new ClientSecretCredential(tenantId, clientId, clientSecret));
+        builder.Services.AddScoped<IEchoChanters, EchoChanters>();
+        builder.Services.AddScoped<IEchoesTome, EchoesTome>();
+        builder.Services.AddScoped<IEchoKeeperChanter, EchoKeeperChanter>();
+        builder.Services.AddScoped<IEchoShaper, EchoShaper>();
+    }
 
-            var configurationSigils = new ConfigurationSigils();
-            builder.Configuration.Bind(configurationSigils);
-
-            builder.Services.AddSingleton<IConfigurationSigils>(configurationSigils);
-            return configurationSigils;
+    public static void ImbueConstruct(
+        WebApplication app,
+        IConfigurationSigils configurationSigils)
+    {
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseMigrationsEndPoint();
+        }
+        else
+        {
+            app.UseExceptionHandler("/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
         }
 
-        public static void AttuneEnchantments(
-            WebApplicationBuilder builder,
-            IConfigurationSigils configurationSigils)
+        using (var scope = app.Services.CreateScope())
         {
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
-
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            var cosmosEndpoint = configurationSigils.CosmosEndpoint;
-            var cosmosKey = configurationSigils.CosmosKey;
-            var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
-
-            builder.Services.AddSingleton<ICosmosTomeScryer>(
-                new CosmosTomeScryer(cosmosClient));
-
-            builder.Services.AddAzureClients(builder =>
+            var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            try
             {
-                builder.AddBlobServiceClient(configurationSigils.BlobConnectionString);
-            });
-
-            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-            builder.Services.AddServerSideBlazor();
-
-            builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-
-            builder.Services.AddScoped<IEchoChanters, EchoChanters>();
-            builder.Services.AddScoped<IEchoesTome, EchoesTome>();
-            builder.Services.AddScoped<IEchoKeeperChanter, EchoKeeperChanter>();
-            builder.Services.AddScoped<IEchoShaper, EchoShaper>();
+                db.Database.Migrate();
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Console.WriteLine(ex.Message);
+            }
         }
 
-        public static void ImbueConstruct(
-            WebApplication app,
-            IConfigurationSigils configurationSigils)
+        app.UseHttpsRedirection();
+
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapControllers();
+        app.MapBlazorHub();
+        app.MapFallbackToPage("/_Host");
+
+        using (var scope = app.Services.CreateScope())
         {
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseMigrationsEndPoint();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                try
-                {
-                    db.Database.Migrate();
-                }
-                catch (Exception ex)
-                {
-                    // Log the error
-                    Console.WriteLine(ex.Message);
-                }
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.MapControllers();
-            app.MapBlazorHub();
-            app.MapFallbackToPage("/_Host");
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-                DbInitializer.InitializeAsync(userManager, roleManager, configurationSigils).Wait();
-            }
+            DbInitializer.InitializeAsync(userManager, roleManager, configurationSigils).Wait();
         }
     }
 }

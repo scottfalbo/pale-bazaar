@@ -1,6 +1,5 @@
-﻿namespace PaleBazaar.Pages.Grimoires
+﻿namespace PaleBazaar.Pages.Grimoires;
+
+public partial class CabinetOfMiscellany
 {
-    public partial class CabinetOfMiscellany
-    {
-    }
 }

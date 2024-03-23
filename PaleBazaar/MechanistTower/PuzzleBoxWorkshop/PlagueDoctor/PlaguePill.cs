@@ -1,10 +1,9 @@
-﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor
-{
-    public class PlaguePill
-    {
-        public Capsule CapsuleOne { get; set; }
-        public Capsule CapsuleTwo { get; set; }
+﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor;
 
-        // color, rotation
-    }
+public class PlaguePill
+{
+    public Capsule CapsuleOne { get; set; }
+    public Capsule CapsuleTwo { get; set; }
+
+    // color, rotation
 }

@@ -1,36 +1,35 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using PaleBazaar.MechanistTower.Configuration;
 
-namespace PaleBazaar.GuardianAegis
+namespace PaleBazaar.GuardianAegis;
+
+public static class DbInitializer
 {
-    public static class DbInitializer
+    public static async Task InitializeAsync(
+        UserManager<IdentityUser> userManager,
+        RoleManager<IdentityRole> roleManager,
+        IConfigurationSigils configurationSigils)
     {
-        public static async Task InitializeAsync(
-            UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager,
-            IConfigurationSigils configurationSigils)
+        var adminRole = "WizardOverlord";
+
+        if (await roleManager.FindByNameAsync(adminRole) == null)
         {
-            var adminRole = "WizardOverlord";
+            await roleManager.CreateAsync(new IdentityRole(adminRole));
+        }
 
-            if (await roleManager.FindByNameAsync(adminRole) == null)
+        var adminEmail = configurationSigils.AdminEmail;
+        var adminUsername = configurationSigils.AdminUserName;
+
+        if (await userManager.FindByEmailAsync(adminEmail) == null)
+        {
+            var adminUser = new IdentityUser
             {
-                await roleManager.CreateAsync(new IdentityRole(adminRole));
-            }
-
-            var adminEmail = configurationSigils.AdminEmail;
-            var adminUsername = configurationSigils.AdminUserName;
-
-            if (await userManager.FindByEmailAsync(adminEmail) == null)
-            {
-                var adminUser = new IdentityUser
-                {
-                    UserName = adminUsername,
-                    Email = adminEmail,
-                    EmailConfirmed = true
-                };
-                await userManager.CreateAsync(adminUser, configurationSigils.AdminPassword);
-                await userManager.AddToRoleAsync(adminUser, adminRole);
-            }
+                UserName = adminUsername,
+                Email = adminEmail,
+                EmailConfirmed = true
+            };
+            await userManager.CreateAsync(adminUser, configurationSigils.AdminPassword);
+            await userManager.AddToRoleAsync(adminUser, adminRole);
         }
     }
 }

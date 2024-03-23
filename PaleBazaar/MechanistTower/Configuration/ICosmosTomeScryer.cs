@@ -1,9 +1,8 @@
 ﻿using Microsoft.Azure.Cosmos;
 
-namespace PaleBazaar.MechanistTower.Configuration
+namespace PaleBazaar.MechanistTower.Configuration;
+
+public interface ICosmosTomeScryer
 {
-    public interface ICosmosTomeScryer
-    {
-        CosmosClient ConjureScryer();
-    }
+    CosmosClient ConjureScryer();
 }

@@ -1,24 +1,23 @@
-﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor
+﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor;
+
+public class PlagueJar
 {
-    public class PlagueJar
+    public int BoardWidth { get; set; }
+    public int BoardHeight { get; set; }
+
+    public Cell[,] Board;
+
+    public PlagueJar()
     {
-        public int BoardWidth { get; set; }
-        public int BoardHeight { get; set;}
+        BoardWidth = 8;
+        BoardHeight = 16;
+        Board = new Cell[BoardWidth, BoardHeight];
 
-        public Cell[,] Board;
-
-        public PlagueJar()
+        for (int x = 0; x < BoardWidth; x++)
         {
-            BoardWidth = 8;
-            BoardHeight = 16;
-            Board = new Cell[BoardWidth, BoardHeight];
-
-            for (int x = 0; x < BoardWidth; x++)
+            for (int y = 0; y < BoardHeight; y++)
             {
-                for (int y = 0; y < BoardHeight; y++)
-                {
-                    Board[x, y] = new Cell(CellState.Empty, cellColumn: x, cellRow: y);
-                }
+                Board[x, y] = new Cell(CellState.Empty, cellColumn: x, cellRow: y);
             }
         }
     }

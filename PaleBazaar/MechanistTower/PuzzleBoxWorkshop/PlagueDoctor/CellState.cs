@@ -1,13 +1,12 @@
-﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor
+﻿namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor;
+
+public enum CellState
 {
-    public enum CellState
-    {
-        Empty,
-        RedPill,
-        YellowPill,
-        BluePill,
-        RedVirus,
-        YellowVirus,
-        BlueVirus
-    }
+    Empty,
+    RedPill,
+    YellowPill,
+    BluePill,
+    RedVirus,
+    YellowVirus,
+    BlueVirus
 }
