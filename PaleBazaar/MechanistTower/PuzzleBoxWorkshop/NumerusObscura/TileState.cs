@@ -4,6 +4,9 @@
 
 namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.NumerusObscura;
 
-public class Class
+public enum TileState
 {
+    Empty,
+    HasTile,
+    IsMarked
 }
