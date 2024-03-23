@@ -11,26 +11,24 @@ namespace PaleBazaar.Pages.Grimoires.PuzzleBoxGames;
 
 public partial class CipherBox : ComponentBase
 {
+    private IBrowserFile UploadImage;
+
+    public int CustomBoardSize { get; set; }
+
+    public GameRune[,] GameBoard => CipherBoard.GameBoard;
+
+    public int GameBoardSize => CipherBoard.GameBoardSize;
+
+    public int TeleportTranscript => CipherBoard.TeleportTranscript;
+
+    public bool Victory => CipherBoard.Victory;
+
     [Inject]
     private IEchoShaper _echoShaper { get; set; }
 
     private CipherBoard CipherBoard { get; set; }
-
-    public int TeleportTranscript => CipherBoard.TeleportTranscript;
-    public GameRune[,] GameBoard => CipherBoard.GameBoard;
-    public int GameBoardSize => CipherBoard.GameBoardSize;
-    public int CustomBoardSize { get; set; }
-    public bool Victory => CipherBoard.Victory;
-
-    private bool ShowSigil { get; set; } = false;
     private bool ShowCounter { get; set; } = true;
-
-    private IBrowserFile UploadImage;
-
-    protected override void OnInitialized()
-    {
-        CipherBoard = new CipherBoard(4);
-    }
+    private bool ShowSigil { get; set; } = false;
 
     public void ActivateRune(int x, int y)
     {
@@ -51,9 +49,9 @@ public partial class CipherBox : ComponentBase
         CipherBoard.ReScatterBoard();
     }
 
-    private void HandleCustomImage(InputFileChangeEventArgs e)
+    protected override void OnInitialized()
     {
-        UploadImage = e.File;
+        CipherBoard = new CipherBoard(4);
     }
 
     private async Task CustomizeRunes()
@@ -61,5 +59,10 @@ public partial class CipherBox : ComponentBase
         var paths = await _echoShaper.SplitCipherEcho(UploadImage, CustomBoardSize);
 
         CipherBoard.ConjureBoard(CustomBoardSize, paths);
+    }
+
+    private void HandleCustomImage(InputFileChangeEventArgs e)
+    {
+        UploadImage = e.File;
     }
 }

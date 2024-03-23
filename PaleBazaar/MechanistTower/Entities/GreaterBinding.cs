@@ -6,10 +6,13 @@ namespace PaleBazaar.MechanistTower.Entities;
 
 public abstract class GreaterBinding
 {
-    public string Id { get; set; }
-    public string PartitionKey { get; set; }
-    public string EternalSymbol { get; set; }
     public DateTimeOffset CreatedDateTime { get; set; } = DateTimeOffset.UtcNow;
+
+    public string EternalSymbol { get; set; }
+
+    public string Id { get; set; }
+
+    public string PartitionKey { get; set; }
 
     public GreaterBinding(string eternalSymbol)
     {

@@ -1,5 +1,4 @@
-#cipher-box-container
-{
+#cipher-box-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,25 +12,25 @@
     margin: 20px auto;
 }
 
-#cipher-box-board td, tr, .cipher-box-rune-stone {
-    min-width:50px;
-    min-height: 50px;
-    max-width:80px;
-    max-height: 80px;
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
+    #cipher-box-board td, tr, .cipher-box-rune-stone {
+        min-width: 50px;
+        min-height: 50px;
+        max-width: 80px;
+        max-height: 80px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
 
-#cipher-box-board button {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    color: inherit;
-    outline: inherit;
-}
+    #cipher-box-board button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        outline: inherit;
+    }
 
 #cipher-box-controls {
     display: flex;
@@ -43,10 +42,10 @@
     border-radius: 20px;
 }
 
-#cipher-box-controls > div {
-    display: flex;
-    gap: 1rem;
-}
+    #cipher-box-controls > div {
+        display: flex;
+        gap: 1rem;
+    }
 
 #cipher-box-log {
     display: inline-block;
@@ -63,11 +62,11 @@
     height: 34px;
 }
 
-.cipher-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+    .cipher-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 
 .cipher-switch-slider {
     position: absolute;
@@ -81,25 +80,25 @@
     border-radius: 34px;
 }
 
-.cipher-switch-slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
+    .cipher-switch-slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
 
 .cipher-switch input:checked + .cipher-switch-slider {
     background-color: #6d7c79;
 }
 
-.cipher-switch input:checked + .cipher-switch-slider:before {
-    transform: translateX(26px);
-}
+    .cipher-switch input:checked + .cipher-switch-slider:before {
+        transform: translateX(26px);
+    }
 
 .sigil-circle {
     position: absolute;

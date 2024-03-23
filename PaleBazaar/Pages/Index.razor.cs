@@ -9,21 +9,10 @@ namespace PaleBazaar.Pages;
 
 public partial class Index
 {
-    private bool ShowBanner { get; set; }
-
     [Inject]
     public IJSRuntime JSRuntime { get; set; }
 
-    private async Task HideBanner()
-    {
-        ShowBanner = false;
-        await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "ShowBanner", "false");
-    }
-
-    protected override void OnInitialized()
-    {
-        ShowBanner = true;
-    }
+    private bool ShowBanner { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -41,5 +30,16 @@ public partial class Index
 
             StateHasChanged();
         }
+    }
+
+    protected override void OnInitialized()
+    {
+        ShowBanner = true;
+    }
+
+    private async Task HideBanner()
+    {
+        ShowBanner = false;
+        await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "ShowBanner", "false");
     }
 }

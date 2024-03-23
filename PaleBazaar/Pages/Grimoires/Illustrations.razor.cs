@@ -14,16 +14,16 @@ namespace PaleBazaar.Pages.Grimoires;
 public partial class Illustrations
 {
     [Inject]
-    private IEchoChanters _echoChanters { get; set; }
+    private AuthenticationStateProvider _authenticationStateProvider { get; set; }
 
     [Inject]
-    private AuthenticationStateProvider _authenticationStateProvider { get; set; }
+    private IEchoChanters _echoChanters { get; set; }
 
     [Inject]
     private UserManager<IdentityUser> _userManager { get; set; }
 
-    private List<Echo> Echoes { get; set; }
     private int ActiveImageIndex { get; set; } = 0;
+    private List<Echo> Echoes { get; set; }
     private bool IsWizardOverlord { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -40,13 +40,13 @@ public partial class Illustrations
         }
     }
 
-    private void ShowImage(int index)
-    {
-        ActiveImageIndex = index;
-    }
-
     private async Task EchoSubmitted()
     {
         Echoes = await _echoChanters.GetEchoes(OculusEchoCyphers.Illustration);
+    }
+
+    private void ShowImage(int index)
+    {
+        ActiveImageIndex = index;
     }
 }

@@ -12,11 +12,10 @@ namespace PaleBazaar.Pages;
 [IgnoreAntiforgeryToken]
 public class ErrorModel : PageModel
 {
+    private readonly ILogger<ErrorModel> _logger;
     public string RequestId { get; set; }
 
     public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-    private readonly ILogger<ErrorModel> _logger;
 
     public ErrorModel(ILogger<ErrorModel> logger)
     {

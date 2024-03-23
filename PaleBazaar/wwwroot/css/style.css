@@ -18,99 +18,99 @@
     color: rgb(255, 255, 255);
 }
 
-#bazaar-banner .image-container {
-    grid-row: 3 / 4;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-}
+    #bazaar-banner .image-container {
+        grid-row: 3 / 4;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+    }
 
-#bazaar-banner img {
-    max-width: 80%;
-    height: auto;
-    max-height: 560px;
-}
+    #bazaar-banner img {
+        max-width: 80%;
+        height: auto;
+        max-height: 560px;
+    }
 
-#bazaar-banner h2 {
-    grid-row: 1 / 2;
-    font-family: 'Lumanosimo', cursive;
-    font-size: 1.8em;
-    margin: 20px auto;
-}
+    #bazaar-banner h2 {
+        grid-row: 1 / 2;
+        font-family: 'Lumanosimo', cursive;
+        font-size: 1.8em;
+        margin: 20px auto;
+    }
 
-#bazaar-banner p {
-    grid-row: 2 / 3;
-}
+    #bazaar-banner p {
+        grid-row: 2 / 3;
+    }
 
-#bazaar-banner h3 {
-    grid-row: 4 / 5;
-    font-size: 1.8em;
-    font-family: 'Special Elite', cursive;
-    margin: 20px auto;
-}
+    #bazaar-banner h3 {
+        grid-row: 4 / 5;
+        font-size: 1.8em;
+        font-family: 'Special Elite', cursive;
+        margin: 20px auto;
+    }
 
-#bazaar-banner.hidden {
-    opacity: 0;
-    display: block !important;
-    pointer-events: none;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-}
+    #bazaar-banner.hidden {
+        opacity: 0;
+        display: block !important;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
 
 /* Gallery stuff */
 
 .echo-viewer-data-gallery {
     background-color: #000;
-  }
-  
-  .gallery-chamber-title h1 {
+}
+
+.gallery-chamber-title h1 {
     font-size: 2em;
     text-align: center;
     margin: 10px;
-  }
-  
-  .input-field {
+}
+
+.input-field {
     text-align: center;
     font-size: 1.8em;
-  }
-  
-  .circular-control {
+}
+
+.circular-control {
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.5);
     text-decoration: none;
     border: 1px solid #86fffb;
-  }
-  
-  .circular-control::before {
-    font-size: 24px;
-    color: #86fffb;
-  }
-  
-  /* Admin toggles */
-  
-  .dot {
+}
+
+    .circular-control::before {
+        font-size: 24px;
+        color: #86fffb;
+    }
+
+/* Admin toggles */
+
+.dot {
     background-color: rgb(185, 254, 255);
     border-radius: 50%;
-  }
-  
-  .menu-button {
+}
+
+.menu-button {
     background-color: #000;
     border-radius: 50%;
     border: 1px solid #ffffff;
-  }
-  
-  .x-part {
+}
+
+.x-part {
     background-color: #f6b265;
-  }
-  
-  .dropdown-container {
+}
+
+.dropdown-container {
     text-align: center;
-  }
-  
-  .dropbtn {
+}
+
+.dropbtn {
     background-color: #000;
     color: rgb(185, 254, 255);
     padding: 16px;
@@ -118,16 +118,15 @@
     border: solid 1px rgb(185, 254, 255);
     border-radius: 10px;
     cursor: pointer;
-  }
-  
-  .dropdown {
+}
+
+.dropdown {
     background-color: #000;
     margin: 5px;
-    
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  }
-  
-  .blazor-modal {
+}
+
+.blazor-modal {
     position: fixed;
     top: 0;
     left: 0;

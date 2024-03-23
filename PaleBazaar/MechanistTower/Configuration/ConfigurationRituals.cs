@@ -19,30 +19,6 @@ namespace PaleBazaar.MechanistTower.Configuration;
 
 public static class ConfigurationRituals
 {
-    public static ConfigurationSigils InvokeConfigurationSigils(
-        WebApplicationBuilder builder,
-        IConfiguration configuration)
-    {
-        var keyVaultUri = configuration["KeyVaultUri"];
-
-        builder.Configuration
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .AddUserSecrets(builder.Environment.ApplicationName);
-
-        var clientId = configuration["Azure:ClientId"];
-        var clientSecret = configuration["Azure:ClientSecret"];
-        var tenantId = configuration["Azure:TenantId"];
-
-        builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUri), new ClientSecretCredential(tenantId, clientId, clientSecret));
-
-        var configurationSigils = new ConfigurationSigils();
-        builder.Configuration.Bind(configurationSigils);
-
-        builder.Services.AddSingleton<IConfigurationSigils>(configurationSigils);
-        return configurationSigils;
-    }
-
     public static void AttuneEnchantments(
         WebApplicationBuilder builder,
         IConfigurationSigils configurationSigils)
@@ -130,5 +106,29 @@ public static class ConfigurationRituals
 
             DbInitializer.InitializeAsync(userManager, roleManager, configurationSigils).Wait();
         }
+    }
+
+    public static ConfigurationSigils InvokeConfigurationSigils(
+                WebApplicationBuilder builder,
+        IConfiguration configuration)
+    {
+        var keyVaultUri = configuration["KeyVaultUri"];
+
+        builder.Configuration
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .AddUserSecrets(builder.Environment.ApplicationName);
+
+        var clientId = configuration["Azure:ClientId"];
+        var clientSecret = configuration["Azure:ClientSecret"];
+        var tenantId = configuration["Azure:TenantId"];
+
+        builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUri), new ClientSecretCredential(tenantId, clientId, clientSecret));
+
+        var configurationSigils = new ConfigurationSigils();
+        builder.Configuration.Bind(configurationSigils);
+
+        builder.Services.AddSingleton<IConfigurationSigils>(configurationSigils);
+        return configurationSigils;
     }
 }

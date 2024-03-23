@@ -4,9 +4,10 @@
 
 namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.NumerusObscura;
 
-public class ObscuraTile
+public class ObscuraBoard
 {
-    public int Column { get; set; }
-    public int Row { get; set; }
-    public TileState State { get; set; }
+    public ObscuraTile[,] GameBoard { get; set; }
+    private int _markedTileCount { get; set; }
+
+    private int _tileCount { get; set; }
 }

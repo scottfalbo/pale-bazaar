@@ -6,12 +6,12 @@ namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.CipherBox;
 
 public class CipherBoard
 {
-    public GameRune[,] GameBoard { get; set; }
-    public int GameBoardSize { get; set; }
-    public GameRune ExiledRune { get; set; }
-    public bool Victory => IsVictorious();
-
     public int TeleportTranscript;
+    public GameRune ExiledRune { get; set; }
+    public GameRune[,] GameBoard { get; set; }
+
+    public int GameBoardSize { get; set; }
+    public bool Victory => IsVictorious();
 
     public CipherBoard(int gameBoardSize)
     {
@@ -30,6 +30,12 @@ public class CipherBoard
         TeleportTranscript = 0;
     }
 
+    public void ReScatterBoard()
+    {
+        ScatterRunes();
+        TeleportTranscript = 0;
+    }
+
     public void TranslocateRune(int x, int y)
     {
         var teleport = ForeseenPath(x, y);
@@ -44,12 +50,6 @@ public class CipherBoard
 
             TeleportTranscript++;
         }
-    }
-
-    public void ReScatterBoard()
-    {
-        ScatterRunes();
-        TeleportTranscript = 0;
     }
 
     private void ConjureRunes(int gameBoardSize, List<string> imagePaths = null)
@@ -75,6 +75,39 @@ public class CipherBoard
                 index++;
             }
         }
+    }
+
+    private void ExileRune()
+    {
+        var index = GameBoardSize - 1;
+
+        ExiledRune = GameBoard[index, index];
+        GameBoard[index, index] = null;
+    }
+
+    private (int x, int y)? ForeseenPath(int x, int y)
+    {
+        return (x, y) switch
+        {
+            var (currentX, _) when currentX - 1 >= 0 && GameBoard[currentX - 1, y] == null => (currentX - 1, y),
+            var (currentX, _) when currentX + 1 < GameBoardSize && GameBoard[currentX + 1, y] == null => (currentX + 1, y),
+            var (_, currentY) when currentY - 1 >= 0 && GameBoard[x, currentY - 1] == null => (x, currentY - 1),
+            var (_, currentY) when currentY + 1 < GameBoardSize && GameBoard[x, currentY + 1] == null => (x, currentY + 1),
+            _ => null
+        };
+    }
+
+    private bool IsVictorious()
+    {
+        foreach (var rune in GameBoard)
+        {
+            if (rune != null && !rune.IsCorrect)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void ScatterRunes()
@@ -106,38 +139,5 @@ public class CipherBoard
             GameBoard[randomX, randomY] = runeTwo;
             GameBoard[randomX2, randomY2] = runeOne;
         }
-    }
-
-    private void ExileRune()
-    {
-        var index = GameBoardSize - 1;
-
-        ExiledRune = GameBoard[index, index];
-        GameBoard[index, index] = null;
-    }
-
-    private bool IsVictorious()
-    {
-        foreach (var rune in GameBoard)
-        {
-            if (rune != null && !rune.IsCorrect)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private (int x, int y)? ForeseenPath(int x, int y)
-    {
-        return (x, y) switch
-        {
-            var (currentX, _) when currentX - 1 >= 0 && GameBoard[currentX - 1, y] == null => (currentX - 1, y),
-            var (currentX, _) when currentX + 1 < GameBoardSize && GameBoard[currentX + 1, y] == null => (currentX + 1, y),
-            var (_, currentY) when currentY - 1 >= 0 && GameBoard[x, currentY - 1] == null => (x, currentY - 1),
-            var (_, currentY) when currentY + 1 < GameBoardSize && GameBoard[x, currentY + 1] == null => (x, currentY + 1),
-            _ => null
-        };
     }
 }

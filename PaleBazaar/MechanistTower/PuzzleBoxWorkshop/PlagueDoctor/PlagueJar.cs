@@ -6,10 +6,9 @@ namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.PlagueDoctor;
 
 public class PlagueJar
 {
-    public int BoardWidth { get; set; }
-    public int BoardHeight { get; set; }
-
     public Cell[,] Board;
+    public int BoardHeight { get; set; }
+    public int BoardWidth { get; set; }
 
     public PlagueJar()
     {
