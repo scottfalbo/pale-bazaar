@@ -43,7 +43,6 @@ namespace PaleBazaar.MechanistTower.Configuration
             WebApplicationBuilder builder,
             IConfigurationSigils configurationSigils)
         {
-            // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -82,7 +81,6 @@ namespace PaleBazaar.MechanistTower.Configuration
             WebApplication app,
             IConfigurationSigils configurationSigils)
         {
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
