@@ -2,8 +2,8 @@
 {
     public class PlaguePill
     {
-        public (int column, int row, string color) CapsuleOne { get; set; }
-        public (int column, int row, string color) CapsuleTwo { get; set; }
+        public Capsule CapsuleOne { get; set; }
+        public Capsule CapsuleTwo { get; set; }
 
         // color, rotation
     }

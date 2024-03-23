@@ -1,7 +1,19 @@
 ﻿@page "/plaguedoctor"
 
-<h3>PlagueDoctor</h3>
+<secion id="plague-doctor">
+    <h3>PlagueDoctor</h3>
 
-@code {
-
-}
+    <div class="plague-jar">
+        @for (int y = 0; y < PlagueJar.BoardHeight; y++)
+        {
+            <div class="row">
+                @for (int x = 0; x < PlagueJar.BoardWidth; x++)
+                {
+                    <div class="cell">
+                        @RenderCell(y, x)
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</secion>

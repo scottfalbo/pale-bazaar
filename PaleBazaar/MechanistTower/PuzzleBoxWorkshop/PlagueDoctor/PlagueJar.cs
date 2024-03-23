@@ -2,13 +2,17 @@
 {
     public class PlagueJar
     {
-        private const int BoardWidth = 8;
-        private const int BoardHeight = 16;
+        public int BoardWidth { get; set; }
+        public int BoardHeight { get; set;}
 
-        private Cell[,] Board = new Cell[BoardWidth, BoardHeight];
+        public Cell[,] Board;
 
         public PlagueJar()
         {
+            BoardWidth = 8;
+            BoardHeight = 16;
+            Board = new Cell[BoardWidth, BoardHeight];
+
             for (int x = 0; x < BoardWidth; x++)
             {
                 for (int y = 0; y < BoardHeight; y++)
