@@ -6,34 +6,34 @@ namespace PaleBazaar.MechanistTower.PuzzleBoxWorkshop.NumerusObscura;
 
 public class ObscuraBoard
 {
+    public int ColumnCount { get; set; }
+
     public Dictionary<int, List<int>> ColumnNumbers => _columnNumbers;
 
     public ObscuraTile[,] GameBoard => _gameBoard;
 
     public bool IsSolved => _markedTileCount == _tileCount;
 
+    public int RowCount { get; set; }
+
     public Dictionary<int, List<int>> RowNumbers => _rowNumbers;
 
     private Dictionary<int, List<int>> _columnNumbers { get; set; } = [];
-
-    private int _columns { get; set; }
 
     private ObscuraTile[,] _gameBoard { get; set; }
 
     private int _markedTileCount { get; set; }
 
     private Dictionary<int, List<int>> _rowNumbers { get; set; } = [];
-
-    private int _rows { get; set; }
-
     private int _tileCount { get; set; }
 
     private ObscuraBoard(int rows, int columns)
     {
         _gameBoard = new ObscuraTile[rows, columns];
-        _rows = rows;
-        _columns = columns;
         _tileCount = rows * columns;
+
+        RowCount = rows;
+        ColumnCount = columns;
 
         ConstructBoard();
     }
@@ -61,14 +61,14 @@ public class ObscuraBoard
         var columns = new Dictionary<int, List<ObscuraTile>>();
         var rows = new Dictionary<int, List<ObscuraTile>>();
 
-        for (var row = 0; row < _rows; row++)
+        for (var row = 0; row < RowCount; row++)
         {
             if (!rows.ContainsKey(row))
             {
                 rows.Add(row, []);
             }
 
-            for (var column = 0; column < _columns; column++)
+            for (var column = 0; column < ColumnCount; column++)
             {
                 if (!columns.ContainsKey(column))
                 {

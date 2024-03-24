@@ -1,3 +1,63 @@
 ﻿@page "/numerusobscura"
 
-<h3>NumerusObscura</h3>
+@using MechanistTower.PuzzleBoxWorkshop.NumerusObscura;
+
+<section id="numerus-obscura-container">
+
+    <h3>Numerus Obscura</h3>
+
+    <div id="numerus-obscura-board">
+        <div>
+            <div>
+            </div>
+            <div>
+                <table class="numerus-sequence-table numerus-table">
+                    <tr>
+                        @foreach (var column in ObscuraBoard.ColumnNumbers)
+                        {
+                            <td class="numerus-sequence-column numerus-sequence-cell">
+                                @foreach (var number in column.Value)
+                                {
+                                    <p>@number</p>
+                                }
+                            </td>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div>
+                <table class="numerus-sequence-table numerus-table">
+                    <tr>
+                        @foreach (var row in ObscuraBoard.RowNumbers)
+                        {
+                            <td class="numerus-sequence-row numerus-sequence-cell">
+                                @foreach (var number in row.Value)
+                                {
+                                    <p>@number</p>
+                                }
+                            </td>
+                        }
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table id="numerus-game-table" class="numerus-table">
+                    @for (var i = 0; i < ObscuraBoard.RowCount; i++)
+                    {
+                        <tr>
+                            @for (var j = 0; j < ObscuraBoard.ColumnCount; j++)
+                            {
+                                <td class="obscura-tile">
+                                    <p>@(ObscuraBoard.GameBoard[i, j].State == TileState.HasTile ? "O" : "X")</p>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>

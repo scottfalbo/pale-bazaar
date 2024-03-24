@@ -14,6 +14,5 @@ public partial class NumerusObscura : ComponentBase
     protected override void OnInitialized()
     {
         ObscuraBoard = ObscuraBoard.Conjure(10, 10);
-        Console.WriteLine("whatever");
     }
 }
