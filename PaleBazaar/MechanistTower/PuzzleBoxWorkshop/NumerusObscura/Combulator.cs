@@ -13,10 +13,10 @@ public class Combulator
 
         var orderedTiles = tiles.OrderBy(x => x.Position).ToList();
 
+        var counter = 0;
+
         foreach (var tile in orderedTiles)
         {
-            var counter = 0;
-
             if (tile.State == TileState.HasTile)
             {
                 counter++;
@@ -25,7 +25,7 @@ public class Combulator
                     sequence.Add(counter);
                 }
             }
-            else
+            else if (counter > 0)
             {
                 sequence.Add(counter);
                 counter = 0;

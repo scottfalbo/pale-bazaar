@@ -65,14 +65,14 @@ public class ObscuraBoard
         {
             if (!rows.ContainsKey(row))
             {
-                _rowNumbers[row] = [];
+                rows.Add(row, []);
             }
 
             for (var column = 0; column < _columns; column++)
             {
                 if (!columns.ContainsKey(column))
                 {
-                    _columnNumbers[column] = [];
+                    columns.Add(column, []);
                 }
 
                 var state = Combulator.MarkTile(percentageToMark) ? TileState.HasTile : TileState.Empty;
