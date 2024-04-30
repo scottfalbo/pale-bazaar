@@ -31,7 +31,16 @@ public class EchoShaper : IEchoShaper
     public async Task<Stream> ShapeEcho(IBrowserFile file, int height, int maxWidth = int.MaxValue)
     {
         var memoryStream = new MemoryStream();
-        await file.OpenReadStream().CopyToAsync(memoryStream);
+        var maxFileSize = 2 * 1024 * 1024;
+        try
+        {
+            await file.OpenReadStream(maxFileSize).CopyToAsync(memoryStream);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error copying file to memory stream", ex);
+        }
+
         memoryStream.Position = 0;
 
         using var echo = Image.Load(memoryStream);
